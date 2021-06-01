@@ -3,6 +3,7 @@ const JWTstrategy = require('passport-jwt');
 const { Strategy } = require('passport-local');
 const md5 = require('md5');
 const UserModel = require('../models/user.model');
+const PlayerModel = require('../models/player.model');
 
 passport.use(
   'signup',
@@ -22,6 +23,9 @@ passport.use(
             name: req.body.name.toLowerCase(),
             player: req.body.player,
             playerName: req.body.playerName.toLowerCase(),
+          });
+          await PlayerModel.create({
+            name: req.body.playerName.toLowerCase(),
           });
 
           return done(null, newUser);
