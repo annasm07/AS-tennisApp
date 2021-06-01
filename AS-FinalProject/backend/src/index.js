@@ -3,7 +3,7 @@ const debug = require('debug')('server');
 const morgan = require('morgan');
 const passport = require('passport');
 const authRoutes = require('./routes/auth.routes');
-const userRoutes = require('./routes/user.routes');
+// const userRoutes = require('./routes/user.routes');
 const profileRoutes = require('./routes/profile.routes');
 
 require('dotenv').config();
@@ -21,14 +21,9 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
 server.use('/api/auth/', authRoutes);
-server.use(
-  '/api/user',
-  passport.authenticate('jwt', { session: false }),
-  userRoutes,
-);
 
 server.use(
-  '/api/home',
+  '/api',
   passport.authenticate('jwt', { session: false }),
   profileRoutes,
 );
