@@ -1,21 +1,32 @@
 const passport = require('passport');
 const JWTstrategy = require('passport-jwt');
-const localStrategy = require('passport-local');
-const User = require('../models/user.model');
+const { Strategy } = require('passport-local');
+const md5 = require('md5');
+const UserModel = require('../models/user.model');
 
 passport.use(
   'signup',
-  new localStrategy.Strategy(
+  new Strategy(
     {
       usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true,
     },
-    async (email, password, done) => {
+    async (req, email, password, done) => {
       try {
-        const user = await User.create({ email, password });
+        const user = await UserModel.findOne({ email });
+        if (!user) {
+          const newUser = await UserModel.create({
+            email: email.toLowerCase(),
+            password: md5(password),
+            name: req.body.name.toLowerCase(),
+            player: req.body.player,
+            playerName: req.body.playerName.toLowerCase(),
+          });
 
-        return done(null, user);
+          return done(null, newUser);
+        }
+        return done(null, false, { message: 'Email already taken' });
       } catch (error) {
         return done(error);
       }
@@ -25,20 +36,22 @@ passport.use(
 
 passport.use(
   'login',
-  new localStrategy.Strategy(
+  new Strategy(
     {
       usernameField: 'email',
       passwordField: 'password',
     },
     async (email, password, done) => {
       try {
-        const user = await User.findOne({ email });
+        const user = await UserModel.findOne({ email });
 
         if (!user) {
           return done(null, false, { message: 'User not found' });
         }
 
-        if (!user.isValidPassword(password)) {
+        const validate = await user.isValidPassword(password);
+
+        if (!validate) {
           return done(null, false, { message: 'Wrong Password' });
         }
 
