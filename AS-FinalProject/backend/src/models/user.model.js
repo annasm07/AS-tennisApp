@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const md5 = require('md5');
 
 const userSchema = mongoose.Schema({
   email: String,
@@ -10,7 +11,7 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.methods.isValidPassword = function isValidPassword(password) {
-  return password === this.password;
+  return md5(password) === this.password;
 };
 
 module.exports = mongoose.model('Users', userSchema);
