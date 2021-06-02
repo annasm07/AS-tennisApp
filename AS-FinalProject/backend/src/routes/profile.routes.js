@@ -6,8 +6,8 @@ const statsController = require('../controllers/statsController')();
 const profileRoutes = Router();
 
 profileRoutes
-  .route('/home')
-  .get(playersController.loadDashboard);
+  .route('/home/:playerId')
+  .get(playersController.loadPlayer);
 
 profileRoutes
   .route('/stats')
@@ -15,6 +15,7 @@ profileRoutes
 
 profileRoutes
   .route('/match')
+  .get(matchesController.getMatchById)
   .post(matchesController.createMatch);
 
 profileRoutes
