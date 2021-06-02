@@ -13,9 +13,16 @@ function playersController() {
       res.send(error);
     }
   }
-  async function loadDashboard(req, res) {
-    const player = await Player.find();
-    res.json(player);
+  async function loadPlayer(req, res) {
+    try {
+      const { playerId } = req.params;
+      const playerfound = await Player.findById(playerId);
+      res.json(playerfound);
+    } catch (error) {
+      debug(error);
+      res.status(404);
+      res.send(error);
+    }
   }
 
   async function getOnePlayer(req, res) {
@@ -33,7 +40,7 @@ function playersController() {
   return {
     createOne,
     getOnePlayer,
-    loadDashboard,
+    loadPlayer,
   };
 }
 
