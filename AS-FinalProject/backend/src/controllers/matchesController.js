@@ -13,9 +13,23 @@ function matchesController() {
       res.send(error);
     }
   }
+  async function getMatchById(req, res) {
+    try {
+      const { matchId } = req.params;
+      const matchById = await Match.findById(
+        matchId,
+      );
+      res.json(matchById);
+    } catch (error) {
+      debug(error);
+      res.status(404);
+      res.send(error);
+    }
+  }
 
   return {
     createMatch,
+    getMatchById,
   };
 }
 

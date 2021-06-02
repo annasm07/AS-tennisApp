@@ -6,12 +6,16 @@ const statsController = require('../controllers/statsController')();
 const profileRoutes = Router();
 
 profileRoutes
-  .route('/home')
-  .get(playersController.loadDashboard);
+  .route('/home/:playerId')
+  .get(playersController.loadPlayer);
 
 profileRoutes
   .route('/stats')
   .post(statsController.createStats);
+
+profileRoutes
+  .route('/stats/:matchId')
+  .get(statsController.getMatchStats);
 
 profileRoutes
   .route('/match')
@@ -19,6 +23,6 @@ profileRoutes
 
 profileRoutes
   .route('/match/:matchId')
-  .get(statsController.getMatchStats);
+  .get(matchesController.getMatchById);
 
 module.exports = profileRoutes;
