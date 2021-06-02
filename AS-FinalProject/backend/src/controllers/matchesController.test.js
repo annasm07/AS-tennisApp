@@ -34,7 +34,6 @@ describe('given a createMatch controller', () => {
     expect(res.json).toHaveBeenCalledWith({ winner: true });
   });
   test('shoud return error', async () => {
-    // arrange
     const res = {
       json: jest.fn(),
       send: jest.fn(),
@@ -46,9 +45,8 @@ describe('given a createMatch controller', () => {
       save: jest.fn().mockRejectedValueOnce('error'),
     });
 
-    // act
     await createMatch(req, res);
-    // assert
+
     expect(res.send).toHaveBeenCalledWith('error');
   });
 });
