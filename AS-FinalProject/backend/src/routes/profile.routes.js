@@ -14,12 +14,15 @@ profileRoutes
   .post(statsController.createStats);
 
 profileRoutes
+  .route('/stats/:matchId')
+  .get(statsController.getMatchStats);
+
+profileRoutes
   .route('/match')
-  .get(matchesController.getMatchById)
   .post(matchesController.createMatch);
 
 profileRoutes
   .route('/match/:matchId')
-  .get(statsController.getMatchStats);
+  .get(matchesController.getMatchById);
 
 module.exports = profileRoutes;
