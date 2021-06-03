@@ -7,7 +7,13 @@ const profileRoutes = Router();
 
 profileRoutes
   .route('/home/:playerId')
-  .get(playersController.loadPlayer);
+  .get(playersController.loadPlayer)
+  .put(playersController.updatePlayerById)
+  .delete(playersController.deletePlayerById);
+
+profileRoutes
+  .route('/players')
+  .get(playersController.getAllPlayers);
 
 profileRoutes
   .route('/stats')
@@ -18,11 +24,13 @@ profileRoutes
   .get(statsController.getMatchStats);
 
 profileRoutes
-  .route('/match')
-  .post(matchesController.createMatch);
+  .route('/match/:matchId')
+  .put(matchesController.updateMatchById)
+  .delete(matchesController.deleteMatchById)
+  .get(matchesController.getMatchById);
 
 profileRoutes
-  .route('/match/:matchId')
-  .get(matchesController.getMatchById);
+  .route('/match')
+  .post(matchesController.createMatch);
 
 module.exports = profileRoutes;
