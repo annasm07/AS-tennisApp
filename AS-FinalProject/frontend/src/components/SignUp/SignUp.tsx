@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,36 +9,40 @@ import {
 import globalStyles from '../../theme/globalThemes';
 
 const LogIn = () => {
-  const [text, onChangeText] = React.useState('');
-  const [password, onChangePassword] = React.useState('');
+  const [name, onChangeName] = useState('');
+  const [email, onChangeEmail] = useState('');
+  const [password, onChangePassword] = useState('');
 
   return (
     <SafeAreaView style={styles.body}>
       <Text style={styles.title}>Sign Up</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
+        onChangeText={onChangeName}
         placeholder="Full Name"
-        value={text}
+        value={name}
+        autoCapitalize="words"
       />
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
+        onChangeText={onChangeEmail}
         placeholder="Email"
-        value={text}
+        value={email}
+        autoCapitalize="none"
       />
       <TextInput
         style={styles.input}
         onChangeText={onChangePassword}
         value={password}
         placeholder="Password"
+        autoCapitalize="none"
       />
       <TouchableOpacity
         style={globalStyles.buttonYellow}
         onPress={() => console.log('pressed login')}>
-        <Text>Log in</Text>
+        <Text>Sign Up</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={globalStyles.buttonYellow}>
+      <TouchableOpacity style={globalStyles.buttonGray}>
         <Text>Log in</Text>
       </TouchableOpacity>
     </SafeAreaView>
