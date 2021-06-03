@@ -65,7 +65,7 @@ describe('given a getMatchById controller', () => {
     expect(res.json).toHaveBeenCalledWith({ id: 'abc234' });
   });
 
-  test('should get one match', async () => {
+  test('should return error', async () => {
     const res = {
       json: jest.fn(),
       status: jest.fn(),
