@@ -1,7 +1,7 @@
 const debug = require('debug')('server:statsController');
 const Stats = require('../models/stats.model');
 
-function playersController() {
+function statsController() {
   async function createStats(req, res) {
     const newPlayerStats = new Stats(req.body);
     debug(newPlayerStats);
@@ -15,10 +15,10 @@ function playersController() {
   }
   async function getMatchStats(req, res) {
     try {
-      const playerById = await Stats.findById(
-        req.params.playerId,
+      const statsById = await Stats.findById(
+        req.params.statsId,
       );
-      res.json(playerById);
+      res.json(statsById);
     } catch (error) {
       debug(error);
       res.status(404);
@@ -31,4 +31,4 @@ function playersController() {
   };
 }
 
-module.exports = playersController;
+module.exports = statsController;
