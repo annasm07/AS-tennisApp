@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,31 +6,34 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {connect} from 'react-redux';
 import globalStyles from '../../theme/globalThemes';
+import {logIn} from '../../redux/actions/actionCreators';
 
-const LogIn = () => {
-  const [text, onChangeText] = React.useState('');
-  const [number, onChangeNumber] = React.useState('');
+const LogIn = ({player, dispatch}: any) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
+  function handleLogIn() {
+    dispatch(logIn(email, password)).then(console.log('component ->', player));
+  }
   return (
     <SafeAreaView style={styles.body}>
       <Text style={styles.title}>LogIn</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
+        onChangeText={user => setEmail(user)}
         placeholder="Email"
-        value={text}
+        defaultValue={email}
       />
       <TextInput
         style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
+        onChangeText={pass => setPassword(pass)}
+        defaultValue={password}
         placeholder="Password"
         keyboardType="numeric"
       />
-      <TouchableOpacity
-        style={globalStyles.buttonYellow}
-        onPress={() => console.log('pressed login')}>
+      <TouchableOpacity style={globalStyles.buttonYellow} onPress={handleLogIn}>
         <Text>Log in</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -58,4 +61,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LogIn;
+function mapStateToProps({player}: any) {
+  return {
+    player,
+  };
+}
+
+export default connect(mapStateToProps)(LogIn);
