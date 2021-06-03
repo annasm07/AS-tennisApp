@@ -25,21 +25,8 @@ function playersController() {
     }
   }
 
-  async function getOnePlayer(req, res) {
-    try {
-      const playerById = await Player.findById(
-        req.params.playerId,
-      );
-      res.json(playerById);
-    } catch (error) {
-      debug(error);
-      res.status(404);
-      res.send(error);
-    }
-  }
   return {
     createOne,
-    getOnePlayer,
     loadPlayer,
   };
 }
