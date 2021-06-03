@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import globalStyles from './src/theme/globalThemes';
 import LogInPage from './src/components/LogIn/LogIn';
+import {Provider} from 'react-redux';
+import store from './src/redux/stores/index';
 
 function LogInSignUp({navigation}: any) {
   return (
@@ -38,22 +40,24 @@ const Stack = createStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen
-          name="Home"
-          component={LogInSignUp}
-          options={{title: ' '}}
-        />
+    <Provider store={store()}>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <Stack.Screen
+            name="Home"
+            component={LogInSignUp}
+            options={{title: ' '}}
+          />
 
-        <Stack.Screen name="LogInPage" component={LogInPage} />
-        <Stack.Screen name="SignUpPage" component={LogInPage} />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen name="LogInPage" component={LogInPage} />
+          <Stack.Screen name="SignUpPage" component={LogInPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
