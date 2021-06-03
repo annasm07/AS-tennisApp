@@ -24,7 +24,6 @@ const statsSchema = mongoose.Schema({
       volley: [Number],
     },
   },
-  playerId: String,
 });
 
 module.exports = mongoose.model('Stats', statsSchema);
