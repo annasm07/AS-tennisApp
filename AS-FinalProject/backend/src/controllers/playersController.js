@@ -2,17 +2,11 @@ const debug = require('debug')('server:playersController');
 const Player = require('../models/player.model');
 
 function playersController() {
-  async function createOne(req, res) {
-    const newPlayer = new Player(req.body);
-    debug(newPlayer);
-    try {
-      await newPlayer.save();
-      res.json(newPlayer);
-    } catch (error) {
-      debug(error);
-      res.send(error);
-    }
+  async function getAllPlayers(req, res) {
+    const players = await Player.find();
+    res.json(players);
   }
+
   async function loadPlayer(req, res) {
     try {
       const { playerId } = req.params;
@@ -25,9 +19,36 @@ function playersController() {
     }
   }
 
+  async function updatePlayerById(req, res) {
+    try {
+      const updatedPlayer = await Player.findOneAndUpdate(
+        req.params.playerId,
+        req.body,
+        { new: true },
+      );
+      res.json(updatedPlayer);
+    } catch (error) {
+      debug(error);
+      res.send(error);
+    }
+  }
+
+  async function deletePlayerById(req, res) {
+    try {
+      await Player.findOneAndDelete(req.params.playerId);
+      res.status(204);
+      res.json();
+    } catch (error) {
+      debug(error);
+      res.send(error);
+    }
+  }
+
   return {
-    createOne,
+    getAllPlayers,
     loadPlayer,
+    updatePlayerById,
+    deletePlayerById,
   };
 }
 
