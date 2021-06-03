@@ -9,7 +9,7 @@ export function logIn() {
       const {data} = await axios.post(url);
       dispatch({
         type: actionTypes.LOG_IN,
-        user: data,
+        player: data,
       });
     } catch (error) {
       dispatch({
