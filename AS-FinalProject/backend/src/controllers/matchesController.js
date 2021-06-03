@@ -27,9 +27,35 @@ function matchesController() {
     }
   }
 
+  async function updateMatchById(req, res) {
+    try {
+      const updatedMatch = await Match.findOneAndUpdate(
+        req.params.matchId,
+        req.body,
+        { new: true },
+      );
+      res.json(updatedMatch);
+    } catch (error) {
+      debug(error);
+      res.send(error);
+    }
+  }
+  async function deleteMatchById(req, res) {
+    try {
+      await Match.findOneAndDelete(req.params.matchId);
+      res.status(204);
+      res.json();
+    } catch (error) {
+      debug(error);
+      res.send(error);
+    }
+  }
+
   return {
     createMatch,
     getMatchById,
+    updateMatchById,
+    deleteMatchById,
   };
 }
 

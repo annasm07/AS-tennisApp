@@ -4,50 +4,22 @@ const Player = require('../models/player.model');
 jest.mock('../models/player.model');
 
 const {
-  createOne,
+  getAllPlayers,
   loadPlayer,
+  updatePlayerById,
+  deletePlayerById,
 } = playersController();
 
-describe('given a createMatch controller', () => {
-  class MockPlayer {
-    constructor(name) {
-      this.name = name;
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-    save() {}
-  }
-  test('should create one Player', async () => {
+describe('given a getAllPlayers controller', () => {
+  test('shoud get all players', async () => {
     const res = {
       json: jest.fn(),
-      send: jest.fn(),
     };
-    const req = {
-      body: null,
-    };
-    const newPlayer = new MockPlayer('Anna');
+    Player.find.mockResolvedValue([{ id: 'abc', name: 'Anna' }, { id: 'def', name: 'Sala' }]);
 
-    Player.mockReturnValueOnce(newPlayer);
+    await getAllPlayers(null, res);
 
-    await createOne(req, res);
-
-    expect(res.json).toHaveBeenCalledWith({ name: 'Anna' });
-  });
-  test('should return error', async () => {
-    const res = {
-      json: jest.fn(),
-      send: jest.fn(),
-    };
-    const req = {
-      body: null,
-    };
-    Player.mockReturnValueOnce({
-      save: jest.fn().mockRejectedValueOnce('error'),
-    });
-
-    await createOne(req, res);
-
-    expect(res.send).toHaveBeenCalledWith('error');
+    expect(res.json).toHaveBeenCalledWith([{ id: 'abc', name: 'Anna' }, { id: 'def', name: 'Sala' }]);
   });
 });
 
@@ -78,5 +50,68 @@ describe('given a loadPlayer controller', () => {
     await loadPlayer(req, res);
 
     expect(res.status).toHaveBeenCalledWith(404);
+  });
+});
+
+describe('given a updatePlayerById controller', () => {
+  test('shoud update selected player', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    const req = {
+      params: { playerId: 7 },
+      body: { id: 7, name: 'Anna' },
+    };
+    Player.findOneAndUpdate.mockReturnValueOnce(req.body);
+    await updatePlayerById(req, res);
+
+    expect(res.json).toHaveBeenCalledWith({ id: 7, name: 'Anna' });
+  });
+  test('shoud reject selected player', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    const req = {
+      params: { playerId: 7 },
+      body: { id: 7, name: 'Anna' },
+    };
+    Player.findOneAndUpdate.mockRejectedValueOnce('error');
+    await updatePlayerById(req, res);
+
+    expect(res.send).toHaveBeenCalledWith('error');
+  });
+});
+
+describe('given a deletePlayerById controller', () => {
+  test('shoud delete selected player', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    const req = {
+      params: { playerId: null },
+    };
+    await deletePlayerById(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(204);
+  });
+  test('shoud delete selected hero', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    const req = {
+      params: { playerId: 22 },
+    };
+    Player.findOneAndDelete.mockRejectedValueOnce('error');
+    await deletePlayerById(req, res);
+
+    expect(res.send).toHaveBeenCalledWith('error');
   });
 });

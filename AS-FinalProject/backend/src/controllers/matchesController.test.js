@@ -6,6 +6,8 @@ jest.mock('../models/match.model');
 const {
   createMatch,
   getMatchById,
+  updateMatchById,
+  deleteMatchById,
 } = matchesController();
 
 describe('given a createMatch controller', () => {
@@ -78,5 +80,70 @@ describe('given a getMatchById controller', () => {
     await getMatchById(req, res);
 
     expect(res.status).toHaveBeenCalledWith(404);
+  });
+});
+
+describe('given a updateMatchById controller', () => {
+  test('shoud update selected match', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    const req = {
+      params: { matchId: 20 },
+      body: { id: 20, winner: 'Anna' },
+    };
+    Match.findOneAndUpdate.mockReturnValueOnce(req.body);
+
+    await updateMatchById(req, res);
+
+    expect(res.json).toHaveBeenCalledWith({ id: 20, winner: 'Anna' });
+  });
+
+  test('shoud reject selected hero', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    const req = {
+      params: { matchId: 20 },
+      body: { id: 20, winner: 'Anna' },
+    };
+    Match.findOneAndUpdate.mockRejectedValueOnce('error');
+    await updateMatchById(req, res);
+
+    expect(res.send).toHaveBeenCalledWith('error');
+  });
+});
+
+describe('given a deleteMatchById controller', () => {
+  test('shoud delete selected match', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    const req = {
+      params: { matchId: null },
+    };
+    await deleteMatchById(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(204);
+  });
+  test('shoud delete selected hero', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    const req = {
+      params: { matchId: 2222 },
+    };
+    Match.findOneAndDelete.mockRejectedValueOnce('error');
+    await deleteMatchById(req, res);
+
+    expect(res.send).toHaveBeenCalledWith('error');
   });
 });
