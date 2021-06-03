@@ -10,12 +10,12 @@ import {connect} from 'react-redux';
 import globalStyles from '../../theme/globalThemes';
 import {logIn} from '../../redux/actions/actionCreators';
 
-const LogIn = ({player, dispatch}: any) => {
+const LogIn = ({tokens, dispatch}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleLogIn() {
-    dispatch(logIn(email, password)).then(console.log('component ->', player));
+    dispatch(logIn(email, password));
   }
   return (
     <SafeAreaView style={styles.body}>
@@ -25,13 +25,14 @@ const LogIn = ({player, dispatch}: any) => {
         onChangeText={user => setEmail(user)}
         placeholder="Email"
         defaultValue={email}
+        autoCapitalize="none"
       />
       <TextInput
         style={styles.input}
         onChangeText={pass => setPassword(pass)}
         defaultValue={password}
         placeholder="Password"
-        keyboardType="numeric"
+        autoCapitalize="none"
       />
       <TouchableOpacity style={globalStyles.buttonYellow} onPress={handleLogIn}>
         <Text>Log in</Text>
@@ -61,9 +62,9 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps({player}: any) {
+function mapStateToProps({tokens}: any) {
   return {
-    player,
+    tokens,
   };
 }
 
