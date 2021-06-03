@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import globalStyles from './src/theme/globalThemes';
 import LogInPage from './src/components/LogIn/LogIn';
+import SignUpPage from './src/components/SignUp/SignUp';
 import {Provider} from 'react-redux';
 import store from './src/redux/stores/index';
 
@@ -54,7 +55,7 @@ function App() {
           />
 
           <Stack.Screen name="LogInPage" component={LogInPage} />
-          <Stack.Screen name="SignUpPage" component={LogInPage} />
+          <Stack.Screen name="SignUpPage" component={SignUpPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
