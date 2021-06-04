@@ -12,16 +12,13 @@ import {logIn} from '../../redux/actions/actionCreators';
 
 const LogIn = ({tokens, dispatch, navigation}: any) => {
   useEffect(() => {
-    tokens.length && navigation.navigate('Dashboard');
+    tokens.length && navigation.navigate('FixedNavigator');
   }, [tokens, navigation]);
-  console.log(tokens);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   function handleLogIn() {
     dispatch(logIn(email, password));
   }
-  console.log(tokens);
   return (
     <SafeAreaView style={styles.body}>
       <Text style={styles.title}>LogIn</Text>
