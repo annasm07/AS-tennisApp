@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import globalStyles from './src/theme/globalThemes';
 import LogInPage from './src/components/LogIn/LogIn';
+import SignUpPage from './src/components/SignUp/SignUp';
+import FixedNavigator from './src/components/FixedNavigator/FixedNavigator';
 import {Provider} from 'react-redux';
 import store from './src/redux/stores/index';
 
@@ -52,9 +54,9 @@ function App() {
             component={LogInSignUp}
             options={{title: ' '}}
           />
-
+          <Stack.Screen name="FixedNavigator" component={FixedNavigator} />
           <Stack.Screen name="LogInPage" component={LogInPage} />
-          <Stack.Screen name="SignUpPage" component={LogInPage} />
+          <Stack.Screen name="SignUpPage" component={SignUpPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

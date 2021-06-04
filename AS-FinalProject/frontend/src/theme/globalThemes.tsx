@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   buttonGray: {
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#EFEFEF',
+    backgroundColor: '#E5E5E5',
     borderRadius: 20,
     borderColor: '#000000',
     borderWidth: 1,
