@@ -10,7 +10,7 @@ import {connect} from 'react-redux';
 import globalStyles from '../../theme/globalThemes';
 import {logIn} from '../../redux/actions/actionCreators';
 
-const LogIn = ({tokens, dispatch}: any) => {
+const LogIn = ({dispatch}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
