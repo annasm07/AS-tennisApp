@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,13 +10,18 @@ import {connect} from 'react-redux';
 import globalStyles from '../../theme/globalThemes';
 import {logIn} from '../../redux/actions/actionCreators';
 
-const LogIn = ({dispatch}: any) => {
+const LogIn = ({tokens, dispatch, navigation}: any) => {
+  useEffect(() => {
+    tokens.length && navigation.navigate('Dashboard');
+  }, [tokens, navigation]);
+  console.log(tokens);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleLogIn() {
     dispatch(logIn(email, password));
   }
+  console.log(tokens);
   return (
     <SafeAreaView style={styles.body}>
       <Text style={styles.title}>LogIn</Text>
