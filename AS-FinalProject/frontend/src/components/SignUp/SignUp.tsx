@@ -5,10 +5,11 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import globalStyles from '../../theme/globalThemes';
 
-const LogIn = () => {
+const SignUp = () => {
   const [name, onChangeName] = useState('');
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
@@ -37,6 +38,16 @@ const LogIn = () => {
         placeholder="Password"
         autoCapitalize="none"
       />
+
+      <View style={styles.userType}>
+        <TouchableOpacity style={globalStyles.buttonYellow}>
+          <Text>Player</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={globalStyles.buttonYellow}>
+          <Text>Coach</Text>
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity
         style={globalStyles.buttonYellow}
         onPress={() => console.log('pressed login')}>
@@ -58,6 +69,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     padding: 30,
   },
+  userType: {
+    flexDirection: 'row',
+  },
   input: {
     height: 40,
     margin: 8,
@@ -70,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LogIn;
+export default SignUp;
