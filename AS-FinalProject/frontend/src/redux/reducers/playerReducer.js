@@ -2,9 +2,9 @@ import actionTypes from '../actions/actionTypes';
 
 function playerReducer(player = {}, action) {
   switch (action.type) {
-    case actionTypes.LOG_IN:
+    case actionTypes.GET_PLAYER:
       return action.player;
-    case actionTypes.LOG_IN_ERROR:
+    case actionTypes.GET_PLAYER_ERROR:
       return player;
     default:
       return player;

@@ -1,20 +1,42 @@
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
-const url = 'http://192.168.0.24:1616/api/auth/login';
+const LOG_IN_URL = 'http://localhost:1616/api/auth/login';
+const GET_PLAYER_URL = 'http://localhost:1616/api/home';
 
 export function logIn(email, password) {
   return async dispatch => {
     try {
-      const {data} = await axios.post(url, {email, password});
+      const {data} = await axios.post(LOG_IN_URL, {email, password});
       dispatch({
         type: actionTypes.LOG_IN,
-        player: data,
+        user: data,
       });
     } catch (error) {
       console.log(error);
       dispatch({
         type: actionTypes.LOG_IN_ERROR,
+      });
+    }
+  };
+}
+
+export function getPlayerInfo(token, playerId) {
+  return async dispatch => {
+    try {
+      const {data} = await axios(`${GET_PLAYER_URL}/${playerId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({
+        type: actionTypes.GET_PLAYER,
+        player: data,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.GET_PLAYER_ERROR,
       });
     }
   };
