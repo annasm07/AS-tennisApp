@@ -3,6 +3,9 @@ import {View, Image, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Dashboard from '../Dashboard/Dashboard';
 import Stats from '../Stats/Stats';
+import NewMatch from '../NewMatch/NewMatch';
+import UsersList from '../UsersList/UsersList';
+import InfoPage from '../InfoPage/InfoPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,6 +45,48 @@ export default function Home() {
               <Image
                 style={styles.icon}
                 source={require('../../images/stats-icon.png')}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="NewMatch"
+        component={NewMatch}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image
+                style={styles.icon}
+                source={require('../../images/ball-icon.png')}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Users"
+        component={UsersList}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image
+                style={styles.icon}
+                source={require('../../images/user-icon.png')}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Info"
+        component={InfoPage}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image
+                style={styles.icon}
+                source={require('../../images/info-icon.png')}
               />
             </View>
           ),
