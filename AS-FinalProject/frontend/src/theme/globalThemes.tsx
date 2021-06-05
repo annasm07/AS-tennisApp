@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     fontSize: 50,
     marginTop: 30,
-    padding: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
     width: 120,
   },
   buttonGray: {
@@ -26,8 +27,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     fontSize: 50,
     marginTop: 10,
-    padding: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
     width: 100,
+  },
+  grayText: {
+    color: '#7A7A7A',
   },
 });
 
