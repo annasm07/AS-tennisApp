@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const playerSchema = mongoose.Schema({
   name: String,
   record: [Number],
-  playedMatches: [mongoose.Types.ObjectId],
+  playedMatches: [{
+    type: mongoose.Types.ObjectId,
+    ref: 'Matches',
+  }],
   img: String,
 });
 
