@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
   name: String,
   player: Boolean,
   playerName: String,
-
+  playerId: mongoose.Types.ObjectId,
 });
 
 userSchema.methods.isValidPassword = function isValidPassword(password) {
