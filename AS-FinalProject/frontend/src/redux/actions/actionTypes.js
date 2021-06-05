@@ -1,4 +1,6 @@
 export default {
   LOG_IN: 'LOG_IN',
   LOG_IN_ERROR: 'LOG_IN_ERROR',
+  GET_PLAYER: 'GET_PLAYER',
+  GET_PLAYER_ERROR: 'GET_PLAYER_ERROR',
 };
