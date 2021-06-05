@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, View, Text, Image, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {getPlayerInfo} from '../../redux/actions/actionCreators';
+import globalStyles from '../../theme/globalThemes';
 
 function Dashboard({dispatch, player, tokens, user}: any) {
   useEffect(() => {
@@ -34,16 +35,16 @@ function Dashboard({dispatch, player, tokens, user}: any) {
             <View style={styles.matchBox}>
               <View style={styles.player1}>
                 <Text>{match.result[0].name}</Text>
-                <Text>{match.result[0].games}</Text>
+                <Text style={styles.result}>{match.result[0].games}</Text>
               </View>
               <View style={styles.player2}>
                 <Text>{match.result[1].name}</Text>
-                <Text>{match.result[1].games}</Text>
+                <Text style={styles.result}>{match.result[1].games}</Text>
               </View>
             </View>
             <View style={styles.dateBox}>
-              <Text>MAY 23rd, 2021</Text>
-              <Text>Stats &gt;</Text>
+              <Text style={globalStyles.grayText}>MAY 23rd, 2021</Text>
+              <Text style={globalStyles.grayText}>Stats &gt;</Text>
             </View>
           </>
         ))}
@@ -60,13 +61,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   playerImage: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     borderRadius: 100,
   },
   playerName: {
     fontSize: 20,
     paddingLeft: 20,
+    textTransform: 'capitalize',
   },
   matchBox: {
     backgroundColor: '#E5E5E5',
@@ -83,12 +85,15 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    color: '#7A7A7A',
+  },
+  result: {
+    letterSpacing: 20,
+    fontSize: 20,
   },
   player1: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomColor: 'black',
+    borderBottomColor: '#7A7A7A',
     borderBottomWidth: 1,
     paddingVertical: 8,
   },
