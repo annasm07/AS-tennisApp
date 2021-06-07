@@ -2,6 +2,7 @@ import axios from 'axios';
 import actionTypes from './actionTypes';
 
 const LOG_IN_URL = 'http://localhost:1616/api/auth/login';
+const SIGN_UP_URL = 'http://localhost:1616/api/auth/signup';
 const GET_PLAYER_URL = 'http://localhost:1616/api/home';
 
 export function logIn(email, password) {
@@ -16,6 +17,29 @@ export function logIn(email, password) {
       console.log(error);
       dispatch({
         type: actionTypes.LOG_IN_ERROR,
+      });
+    }
+  };
+}
+
+export function signUp({name, email, password, player, playerName}) {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post(SIGN_UP_URL, {
+        name,
+        email,
+        password,
+        player,
+        playerName,
+      });
+      dispatch({
+        type: actionTypes.SIGN_UP,
+        user: data.user,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.SIGN_UP_ERROR,
       });
     }
   };
