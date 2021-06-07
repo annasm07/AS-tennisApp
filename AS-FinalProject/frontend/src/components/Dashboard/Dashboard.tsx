@@ -3,6 +3,7 @@ import {SafeAreaView, View, Text, Image, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {getPlayerInfo} from '../../redux/actions/actionCreators';
 import globalStyles from '../../theme/globalThemes';
+import matchBoxStyles from '../../theme/matchBoxTheme';
 
 function Dashboard({dispatch, player, tokens, user}: any) {
   useEffect(() => {
@@ -32,17 +33,21 @@ function Dashboard({dispatch, player, tokens, user}: any) {
       {player.playedMatches &&
         player.playedMatches.map((match: any) => (
           <>
-            <View style={styles.matchBox}>
-              <View style={styles.player1}>
+            <View style={matchBoxStyles.matchBox}>
+              <View style={matchBoxStyles.player1}>
                 <Text>{match.result[0].name}</Text>
-                <Text style={styles.result}>{match.result[0].games}</Text>
+                <Text style={matchBoxStyles.result}>
+                  {match.result[0].games}
+                </Text>
               </View>
-              <View style={styles.player2}>
+              <View style={matchBoxStyles.player2}>
                 <Text>{match.result[1].name}</Text>
-                <Text style={styles.result}>{match.result[1].games}</Text>
+                <Text style={matchBoxStyles.result}>
+                  {match.result[1].games}
+                </Text>
               </View>
             </View>
-            <View style={styles.dateBox}>
+            <View style={matchBoxStyles.dateBox}>
               <Text style={globalStyles.grayText}>MAY 23rd, 2021</Text>
               <Text style={globalStyles.grayText}>Stats &gt;</Text>
             </View>
@@ -69,38 +74,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingLeft: 20,
     textTransform: 'capitalize',
-  },
-  matchBox: {
-    backgroundColor: '#E5E5E5',
-    borderRadius: 10,
-    padding: 10,
-    margin: 15,
-    marginBottom: 5,
-  },
-  dateBox: {
-    backgroundColor: '#E5E5E5',
-    borderRadius: 10,
-    padding: 8,
-    marginHorizontal: 15,
-    marginBottom: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  result: {
-    letterSpacing: 20,
-    fontSize: 20,
-  },
-  player1: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomColor: '#7A7A7A',
-    borderBottomWidth: 1,
-    paddingVertical: 8,
-  },
-  player2: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 8,
   },
 });
 
