@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import globalStyles from '../../theme/globalThemes';
+import globalStyles from '../../../theme/globalThemes';
 
-export default function NewMatch() {
+export default function NewMatch({navigation}: any) {
   const [player1, setPlayer1] = useState('');
   const [player2, setPlayer2] = useState('');
   return (
@@ -30,7 +30,9 @@ export default function NewMatch() {
       <View style={styles.label}>
         <Text style={globalStyles.grayText}>Select Match Format</Text>
       </View>
-      <TouchableOpacity style={globalStyles.buttonYellow}>
+      <TouchableOpacity
+        style={globalStyles.buttonYellow}
+        onPress={() => navigation.navigate('MatchFlowHome')}>
         <Text>Start Match</Text>
       </TouchableOpacity>
     </SafeAreaView>

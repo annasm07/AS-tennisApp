@@ -3,7 +3,7 @@ import {View, Image, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Dashboard from '../Dashboard/Dashboard';
 import Stats from '../Stats/Stats';
-import NewMatch from '../NewMatch/NewMatch';
+import NewMatch from '../MatchFlowComponents/NewMatch/NewMatch';
 import UsersList from '../UsersList/UsersList';
 import InfoPage from '../InfoPage/InfoPage';
 import FixedHeader from '../FixedHeader/FixedHeader';
