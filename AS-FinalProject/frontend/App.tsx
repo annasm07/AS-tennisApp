@@ -12,6 +12,7 @@ import globalStyles from './src/theme/globalThemes';
 import LogInPage from './src/components/LogIn/LogIn';
 import SignUpPage from './src/components/SignUp/SignUp';
 import FixedNavigator from './src/components/FixedNavigator/FixedNavigator';
+import MatchFlowHome from './src/components/MatchFlowComponents/MatchFlowHome/MatchFlowHome';
 import {Provider} from 'react-redux';
 import store from './src/redux/stores/index';
 
@@ -57,6 +58,7 @@ function App() {
           <Stack.Screen name="FixedNavigator" component={FixedNavigator} />
           <Stack.Screen name="LogInPage" component={LogInPage} />
           <Stack.Screen name="SignUpPage" component={SignUpPage} />
+          <Stack.Screen name="MatchFlowHome" component={MatchFlowHome} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
