@@ -86,6 +86,7 @@ const SignUp = ({navigation, dispatch}: any) => {
         onChangeText={onChangePassword}
         onEndEditing={() => setPdwError(() => hasPasswordError(password))}
         value={password}
+        secureTextEntry={true}
         placeholder="Password"
         autoCapitalize="none"
       />
