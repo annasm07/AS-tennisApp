@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const passport = require('passport');
 const JWTstrategy = require('passport-jwt');
 const { Strategy } = require('passport-local');
@@ -17,18 +18,19 @@ passport.use(
       try {
         const user = await UserModel.findOne({ email });
         if (!user) {
+          const newPlayer = await PlayerModel.create({
+            name: req.body.playerName.toLowerCase(),
+          });
           const newUser = await UserModel.create({
             email: email.toLowerCase(),
             password: md5(password),
             name: req.body.name.toLowerCase(),
             player: req.body.player,
             playerName: req.body.playerName.toLowerCase(),
-          });
-          await PlayerModel.create({
-            name: req.body.playerName.toLowerCase(),
+            playerId: newPlayer._id,
           });
 
-          return done(null, newUser);
+          return done(null, newUser, newPlayer);
         }
         return done(null, false, { message: 'Email already taken' });
       } catch (error) {

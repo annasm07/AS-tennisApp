@@ -10,7 +10,8 @@ function playersController() {
   async function loadPlayer(req, res) {
     try {
       const { playerId } = req.params;
-      const playerfound = await Player.findById(playerId);
+      const playerfound = await Player.findById(playerId)
+        .populate('playedMatches');
       res.json(playerfound);
     } catch (error) {
       debug(error);

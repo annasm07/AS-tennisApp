@@ -10,7 +10,7 @@ import {connect} from 'react-redux';
 import globalStyles from '../../theme/globalThemes';
 import {logIn} from '../../redux/actions/actionCreators';
 
-const LogIn = ({tokens, dispatch, navigation}: any) => {
+const LogIn = ({tokens, dispatch, navigation, user}: any) => {
   useEffect(() => {
     tokens.length && navigation.navigate('FixedNavigator');
   }, [tokens, navigation]);
@@ -24,7 +24,7 @@ const LogIn = ({tokens, dispatch, navigation}: any) => {
       <Text style={styles.title}>LogIn</Text>
       <TextInput
         style={styles.input}
-        onChangeText={user => setEmail(user)}
+        onChangeText={userEmail => setEmail(userEmail)}
         placeholder="Email"
         defaultValue={email}
         autoCapitalize="none"
@@ -39,6 +39,7 @@ const LogIn = ({tokens, dispatch, navigation}: any) => {
       <TouchableOpacity style={globalStyles.buttonYellow} onPress={handleLogIn}>
         <Text>Log in</Text>
       </TouchableOpacity>
+      {user && <Text style={styles.signedUp}>Signed Up Successfully</Text>}
     </SafeAreaView>
   );
 };
@@ -62,11 +63,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
     borderColor: '#7A7A7A',
   },
+  signedUp: {
+    color: '#70BA5D',
+    alignSelf: 'center',
+    marginTop: 60,
+  },
 });
 
-function mapStateToProps({tokens}: any) {
+function mapStateToProps({tokens, user}: any) {
   return {
     tokens,
+    user,
   };
 }
 
