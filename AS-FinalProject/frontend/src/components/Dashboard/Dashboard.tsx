@@ -32,7 +32,7 @@ function Dashboard({dispatch, player, tokens, user}: any) {
 
       {player.playedMatches &&
         player.playedMatches.map((match: any) => (
-          <>
+          <View key={match._id}>
             <View style={matchBoxStyles.matchBox}>
               <View style={matchBoxStyles.player1}>
                 <Text>{match.result[0].name}</Text>
@@ -51,7 +51,7 @@ function Dashboard({dispatch, player, tokens, user}: any) {
               <Text style={globalStyles.grayText}>MAY 23rd, 2021</Text>
               <Text style={globalStyles.grayText}>Stats &gt;</Text>
             </View>
-          </>
+          </View>
         ))}
     </SafeAreaView>
   );
