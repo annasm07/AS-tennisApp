@@ -1,14 +1,18 @@
 import * as React from 'react';
-import {StyleSheet, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
+import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export default function FixedHeader() {
+export default function FixedHeaderMatch() {
+  const navigation: any = useNavigation();
   return (
     <SafeAreaView style={styles.header}>
-      <Image
-        style={styles.back}
-        source={require('../../../images/arrow-back.png')}
-      />
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Image
+          style={styles.back}
+          source={require('../../../images/arrow-back.png')}
+        />
+      </TouchableOpacity>
       <Image
         style={styles.icon}
         source={require('../../../images/ball-logo.png')}
