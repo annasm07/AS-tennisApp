@@ -4,6 +4,7 @@ import actionTypes from './actionTypes';
 const LOG_IN_URL = 'http://localhost:1616/api/auth/login';
 const SIGN_UP_URL = 'http://localhost:1616/api/auth/signup';
 const GET_PLAYER_URL = 'http://localhost:1616/api/home';
+const GET_ALL_PLAYERS = 'http://localhost:1616/api/players';
 
 export function logIn(email, password) {
   return async dispatch => {
@@ -33,8 +34,8 @@ export function signUp({name, email, password, player, playerName}) {
         playerName,
       });
       dispatch({
-        type: actionTypes.SIGN_UP,
-        user: data.user,
+        // type: actionTypes.SIGN_UP,
+        // user: data.user,
       });
     } catch (error) {
       console.log(error);
@@ -61,6 +62,26 @@ export function getPlayerInfo(token, playerId) {
       console.log(error);
       dispatch({
         type: actionTypes.GET_PLAYER_ERROR,
+      });
+    }
+  };
+}
+export function getAllPlayers(token) {
+  return async dispatch => {
+    try {
+      const {data} = await axios(GET_ALL_PLAYERS, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({
+        type: actionTypes.GET_PLAYERS,
+        players: data,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.GET_PLAYERS_ERROR,
       });
     }
   };
