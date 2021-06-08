@@ -12,7 +12,7 @@ import {logIn} from '../../redux/actions/actionCreators';
 
 const LogIn = ({tokens, dispatch, navigation, user}: any) => {
   useEffect(() => {
-    tokens.length && navigation.navigate('FixedNavigator');
+    tokens.length === 2 && navigation.navigate('FixedNavigator');
   }, [tokens, navigation]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +21,7 @@ const LogIn = ({tokens, dispatch, navigation, user}: any) => {
   }
   return (
     <SafeAreaView style={styles.body}>
-      <Text style={styles.title}>LogIn</Text>
+      <Text style={styles.title}>Log In</Text>
       <TextInput
         style={styles.input}
         onChangeText={userEmail => setEmail(userEmail)}
@@ -33,13 +33,14 @@ const LogIn = ({tokens, dispatch, navigation, user}: any) => {
         style={styles.input}
         onChangeText={pass => setPassword(pass)}
         defaultValue={password}
+        secureTextEntry={true}
         placeholder="Password"
         autoCapitalize="none"
       />
       <TouchableOpacity style={globalStyles.buttonYellow} onPress={handleLogIn}>
         <Text>Log in</Text>
       </TouchableOpacity>
-      {user && <Text style={styles.signedUp}>Signed Up Successfully</Text>}
+      {user.name && <Text style={styles.signedUp}>Signed Up Successfully</Text>}
     </SafeAreaView>
   );
 };
