@@ -9,7 +9,6 @@ function Dashboard({dispatch, player, tokens, user}: any) {
   useEffect(() => {
     dispatch(getPlayerInfo(tokens[0], user.user.playerId));
   }, [dispatch, tokens, user]);
-  console.log(player);
   return (
     <SafeAreaView>
       <View style={styles.playerBox}>
