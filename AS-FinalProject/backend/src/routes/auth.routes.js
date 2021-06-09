@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const { Router } = require('express');
 const authController = require('../controllers/authController')();
 
