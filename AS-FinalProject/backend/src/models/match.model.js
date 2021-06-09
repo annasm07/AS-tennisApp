@@ -5,9 +5,9 @@ const matchSchema = mongoose.Schema({
     player: [mongoose.Types.ObjectId],
     name: String,
     flow: {
-      points: [[Object]],
-      games: [Object],
-      sets: [Object],
+      points: [[{ p1: String, p2: String }]],
+      games: [{ p1: String, p2: String }],
+      sets: [{ p1: String, p2: String }],
     },
     games: [Number],
     stats: mongoose.Types.ObjectId,
