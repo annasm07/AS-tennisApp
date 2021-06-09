@@ -1,22 +1,26 @@
 import * as React from 'react';
+import {useSelector} from 'react-redux';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import matchBoxStyles from '../../../theme/matchBoxTheme';
 
 export default function Stats({navigation}: any) {
-  return (
+  const currentMatch = useSelector((store: any) => store.currentMatch);
+  return currentMatch.result ? (
     <View style={styles.view}>
       <Text style={styles.title}>Who is Serving?</Text>
       <TouchableOpacity
         style={matchBoxStyles.matchBox}
         onPress={() => navigation.navigate('PointFlow')}>
-        <Text>PLAYER 1 NAME</Text>
+        <Text>{currentMatch?.result[0]?.name}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={matchBoxStyles.matchBox}
         onPress={() => navigation.navigate('PointFlow')}>
-        <Text>PLAYER 2 NAME</Text>
+        <Text>{currentMatch?.result[1]?.name}</Text>
       </TouchableOpacity>
     </View>
+  ) : (
+    <Text>...loading...</Text>
   );
 }
 
