@@ -5,6 +5,7 @@ const LOG_IN_URL = 'http://localhost:1616/api/auth/login';
 const SIGN_UP_URL = 'http://localhost:1616/api/auth/signup';
 const GET_PLAYER_URL = 'http://localhost:1616/api/home';
 const GET_ALL_PLAYERS = 'http://localhost:1616/api/players';
+const CREATE_MATCH_URL = 'http://localhost:1616/api/match';
 
 export function logIn(email, password) {
   return async dispatch => {
@@ -26,7 +27,7 @@ export function logIn(email, password) {
 export function signUp({name, email, password, player, playerName}) {
   return async dispatch => {
     try {
-      const {data} = await axios.post(SIGN_UP_URL, {
+      await axios.post(SIGN_UP_URL, {
         name,
         email,
         password,
@@ -82,6 +83,31 @@ export function getAllPlayers(token) {
       console.log(error);
       dispatch({
         type: actionTypes.GET_PLAYERS_ERROR,
+      });
+    }
+  };
+}
+
+export function newMatch(token, p1Name, p2Name) {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post(
+        CREATE_MATCH_URL,
+        {p1Name, p2Name},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      dispatch({
+        type: actionTypes.CREATE_MATCH,
+        currentMatch: data,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.CREATE_MATCH_ERROR,
       });
     }
   };
