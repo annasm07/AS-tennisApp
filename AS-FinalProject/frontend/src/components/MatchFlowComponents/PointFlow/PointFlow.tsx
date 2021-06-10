@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {useSelector} from 'react-redux';
 import {Text, View, StyleSheet} from 'react-native';
 import ServeButtons from '../Serve/Serve';
 import PointEnder from '../PointEnder/PointEnder';
@@ -7,11 +8,12 @@ import PointEnder from '../PointEnder/PointEnder';
 const Stack = createStackNavigator();
 
 export default function Stats() {
-  return (
+  const currentMatch = useSelector((store: any) => store.currentMatch);
+  return currentMatch.result ? (
     <>
       <View style={styles.playersNames}>
-        <Text style={styles.label}>A. SALA</Text>
-        <Text style={styles.label}> S. WILLIAMS</Text>
+        <Text style={styles.label}>{currentMatch?.result[0]?.name}</Text>
+        <Text style={styles.label}> {currentMatch?.result[1]?.name}</Text>
       </View>
       <Stack.Navigator
         initialRouteName="ServeButtons"
@@ -26,6 +28,8 @@ export default function Stats() {
         <Stack.Screen name="PointEnder" component={PointEnder} />
       </Stack.Navigator>
     </>
+  ) : (
+    <Text>...loading...</Text>
   );
 }
 
