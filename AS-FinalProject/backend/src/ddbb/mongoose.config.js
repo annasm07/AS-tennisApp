@@ -6,6 +6,7 @@ connect(
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    useFindAndModify: false,
   },
 ).then(
   () => debug('database connection stablished'),
