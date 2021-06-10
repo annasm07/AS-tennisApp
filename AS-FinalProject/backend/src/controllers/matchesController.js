@@ -11,9 +11,11 @@ function matchesController() {
             [{
               player: '60b72fc8241a200be178038a',
               name: req.body.p1Name,
+              games: [0, 0, 0],
             },
             {
               name: req.body.p2Name,
+              games: [0, 0, 0],
             }],
         date: Date.now(),
       },

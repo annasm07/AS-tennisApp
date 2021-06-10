@@ -1,14 +1,14 @@
-export default function counterLogicPoints(playerWhoWon, currentMatch) {
+export default function counterLogicPoints(
+  playerWhoWon,
+  {points, p1CounterPoints, p2CounterPoints},
+) {
   const pointsIncrement = {
     1: 15,
     2: 15,
     3: 10,
   };
-  let p1CounterPoints = 0,
-    p2CounterPoints = 0,
-    playerWhoLost,
-    points = [],
-    CounterWinner = 0;
+  let CounterWinner = 0,
+    playerWhoLost;
 
   playerWhoWon === 'p1'
     ? (playerWhoLost = 'p2') &&
@@ -18,22 +18,21 @@ export default function counterLogicPoints(playerWhoWon, currentMatch) {
       (p2CounterPoints += 1) &&
       (CounterWinner = p2CounterPoints);
 
-  let matchFlow = currentMatch;
-
-  const previousPoint = currentMatch.result[0].flow.points[0] || {p1: 0, p2: 0};
-
-  points.push(previousPoint);
+  const previousPoint = points[points.length - 1];
 
   let newPoint = JSON.parse(JSON.stringify(previousPoint));
 
   newPoint = {
-    [playerWhoWon]: (newPoint[playerWhoWon] += pointsIncrement[CounterWinner]),
+    [playerWhoWon]: (newPoint[playerWhoWon] +=
+      pointsIncrement[CounterWinner] || 1),
     [playerWhoLost]: newPoint[playerWhoLost],
   };
 
   points.push(newPoint);
 
-  matchFlow.points.push(points);
-
-  return matchFlow;
+  return {
+    points,
+    p1CounterPoints,
+    p2CounterPoints,
+  };
 }
