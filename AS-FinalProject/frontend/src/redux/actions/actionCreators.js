@@ -112,3 +112,10 @@ export function newMatch(token, p1Name, p2Name) {
     }
   };
 }
+
+export function updatePoints(pointsInfo) {
+  return {
+    type: actionTypes.UPDATE_POINTS,
+    currentGame: pointsInfo,
+  };
+}
