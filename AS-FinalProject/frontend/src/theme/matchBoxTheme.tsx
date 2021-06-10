@@ -15,6 +15,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingVertical: 8,
   },
+  playerResult: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginRight: 10,
+  },
+  playerPoint: {
+    marginRight: 15,
+  },
   player2: {
     flexDirection: 'row',
     justifyContent: 'space-between',

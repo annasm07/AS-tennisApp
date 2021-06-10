@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 const debug = require('debug')('server:matchesController');
 const Match = require('../models/match.model');
-const counterLogicPoints = require('../utils/counterLogic');
 
 function matchesController() {
   async function createMatch(req, res) {
@@ -45,22 +44,11 @@ function matchesController() {
 
   async function updateMatchById(req, res) {
     try {
-      const { matchId } = req.params;
-
-      const matchById = await Match.findById(
-        matchId,
-      );
-      const { playerWhoWon } = req.body;
-      const { previousPoint } = req.body;
-      // debug(`playerWhoWon---> ${playerWhoWon}`);
-      const updatedPoints = { result: [{ flow: counterLogicPoints(matchById, playerWhoWon, previousPoint) }] };
-
-      debug(`updatedPoints----> ${JSON.stringify(updatedPoints)}`);
-
       const updatedMatch = await Match.findOneAndUpdate(
-        req.params.matchId,
-        updatedPoints,
-        { new: true },
+        req.params.matchId, {
+          flow: req.body.flow,
+          results: req.body.results,
+        },
       );
       res.json(updatedMatch);
     } catch (error) {
