@@ -6,6 +6,7 @@ const SIGN_UP_URL = 'http://localhost:1616/api/auth/signup';
 const GET_PLAYER_URL = 'http://localhost:1616/api/home';
 const GET_ALL_PLAYERS = 'http://localhost:1616/api/players';
 const CREATE_MATCH_URL = 'http://localhost:1616/api/match';
+const UPDATE_MATCH_URL = 'http://localhost:1616/api/match';
 
 export function logIn(email, password) {
   return async dispatch => {
@@ -117,5 +118,29 @@ export function updatePoints(pointsInfo) {
   return {
     type: actionTypes.UPDATE_POINTS,
     currentGame: pointsInfo,
+  };
+}
+export function updateMatch(token, currentMatch) {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(
+        `${UPDATE_MATCH_URL}/${currentMatch._id}`,
+        currentMatch,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      dispatch({
+        type: actionTypes.END_GAME,
+        currentMatch: data,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.END_GAME_ERROR,
+      });
+    }
   };
 }
