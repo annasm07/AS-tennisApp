@@ -5,6 +5,7 @@ import players from './playersReducer';
 import tokens from './tokenReducer';
 import currentMatch from './currentMatchReducer';
 import currentGamePoints from './pointsReducer';
+import currentSetGames from './gamesReducer';
 
 const rootReducer = combineReducers({
   user,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   tokens,
   currentMatch,
   currentGamePoints,
+  currentSetGames,
 });
 
 export default rootReducer;
