@@ -37,11 +37,11 @@ export function counterLogicPoints(
   };
 }
 
-export function counterLogicGames(playerWhoWon, games) {
+export function counterLogicScoring(playerWhoWon, score) {
   let playerWhoLost;
   playerWhoWon === 'p1' ? (playerWhoLost = 'p2') : (playerWhoLost = 'p1');
 
-  const previousGame = games[games.length - 1];
+  const previousGame = score[score.length - 1];
 
   let newGame = JSON.parse(JSON.stringify(previousGame));
   newGame = {
@@ -49,7 +49,7 @@ export function counterLogicGames(playerWhoWon, games) {
     [playerWhoLost]: newGame[playerWhoLost],
   };
 
-  games.push(newGame);
+  score.push(newGame);
 
-  return games;
+  return score;
 }
