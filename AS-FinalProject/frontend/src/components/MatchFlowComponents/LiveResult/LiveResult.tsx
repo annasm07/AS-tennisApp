@@ -35,8 +35,6 @@ export default function LiveResult() {
     checkEndSet(playerWhoWon, currentSetGames) &&
       finishSet(playerWhoWon, currentSetGames);
 
-    console.log('currentMatch ---->', currentMatch);
-    console.log('points ---->', points);
     dispatch(updateMatch(tokens[0], currentMatch));
   }
 
@@ -70,7 +68,7 @@ export default function LiveResult() {
         finishGame(PLAYER);
         return <Text style={matchBoxStyles.playerPoint}>Game</Text>;
       } else {
-        return <Text style={matchBoxStyles.playerPoint}>-</Text>;
+        return <Text style={matchBoxStyles.playerPoint}>40</Text>;
       }
     } else {
       return (

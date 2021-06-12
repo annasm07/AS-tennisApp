@@ -1,6 +1,7 @@
-/* eslint-disable max-len */
+/* eslint-disable no-underscore-dangle */
 const debug = require('debug')('server:matchesController');
 const Match = require('../models/match.model');
+const Player = require('../models/player.model');
 
 function matchesController() {
   async function createMatch(req, res) {
@@ -8,7 +9,7 @@ function matchesController() {
       {
         result:
             [{
-              player: '60b72fc8241a200be178038a',
+              player: [req.body.playerId],
               name: req.body.p1Name,
               games: [0, 0, 0],
             },
@@ -19,7 +20,16 @@ function matchesController() {
         date: Date.now(),
       },
     );
-    debug(newMatch);
+    const playerById = await Player.findById(
+      req.body.playerId,
+    );
+    playerById.playedMatches.push(newMatch._id);
+
+    await Player.findOneAndUpdate(
+      newMatch.result[0].player, {
+        playedMatches: playerById.playedMatches,
+      },
+    );
     try {
       await newMatch.save();
       res.json(newMatch);
@@ -47,7 +57,7 @@ function matchesController() {
       const updatedMatch = await Match.findOneAndUpdate(
         req.params.matchId, {
           flow: req.body.flow,
-          results: req.body.results,
+          result: req.body.result,
         },
       );
       res.json(updatedMatch);
