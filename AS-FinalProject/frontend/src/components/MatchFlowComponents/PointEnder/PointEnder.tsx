@@ -27,12 +27,12 @@ export default function PointEnder({navigation}: any) {
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p2')}>
-          <Text style={matchButtonsStyles.textRed}>Forced Error</Text>
+          <Text style={matchButtonsStyles.textRed}>Unforced Error</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p2')}>
-          <Text style={matchButtonsStyles.textYellow}>Unforced Error</Text>
+          <Text style={matchButtonsStyles.textYellow}>Forced Error</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
@@ -50,12 +50,12 @@ export default function PointEnder({navigation}: any) {
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p1')}>
-          <Text style={matchButtonsStyles.textRed}>Forced Error</Text>
+          <Text style={matchButtonsStyles.textRed}>Unforced Error</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p1')}>
-          <Text style={matchButtonsStyles.textYellow}>Unforced Error</Text>
+          <Text style={matchButtonsStyles.textYellow}>Forced Error</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
