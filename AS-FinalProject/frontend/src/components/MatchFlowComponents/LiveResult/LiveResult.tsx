@@ -1,11 +1,16 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Text, View, StyleSheet} from 'react-native';
 import matchBoxStyles from '../../../theme/matchBoxTheme';
 import globalStyles from '../../../theme/globalThemes';
-import {updateMatch, endGames} from '../../../redux/actions/actionCreators';
-import {counterLogicScoring} from '../../../utils/counterLogic';
-import {checkEndSet} from '../../../utils/checkEndSet';
+import {
+  updateMatch,
+  updateGames,
+  updateSets,
+  updateMatchGames,
+  updateMatchSets,
+} from '../../../redux/actions/actionCreators';
+import {checkEndSet, checkEndMatch} from '../../../utils/checkEndSet';
 
 export default function LiveResult({navigation}: any) {
   const currentMatch = useSelector((store: any) => store.currentMatch);
@@ -14,39 +19,29 @@ export default function LiveResult({navigation}: any) {
   let currentSetGames = useSelector((store: any) => store.currentSetGames);
   let currentMatchSets = useSelector((store: any) => store.currentMatchSets);
 
-  const p1Sets =
-    currentMatch.flow?.sets[currentMatch.flow.sets.length - 1]?.p1 || 0;
-  const p2Sets =
-    currentMatch.flow?.sets[currentMatch.flow.sets.length - 1]?.p2 || 0;
-  useEffect(() => {
-    (p1Sets === 2 || p2Sets === 2) && navigation.navigate('Dashboard');
-  }, [p1Sets, p2Sets, navigation]);
-
   const dispatch = useDispatch();
 
-  function finishSet(playerWhoWon: String, games: any) {
-    console.log('currentMatch --->', currentMatch);
-    dispatch(endGames(playerWhoWon));
-    currentMatch.flow.games.push(games);
-    console.log('currentMatchSets --->', currentMatchSets);
-    currentMatch.flow.sets.push(currentMatchSets);
-    console.log('currentMatch --->', currentMatch);
+  function finishMatch() {
+    debugger;
+    const p1Sets =
+      currentMatch.flow?.sets[currentMatch.flow.sets.length - 1]?.p1 || 0;
+    const p2Sets =
+      currentMatch.flow?.sets[currentMatch.flow.sets.length - 1]?.p2 || 0;
+    (p1Sets === 2 || p2Sets === 2) && navigation.navigate('Dashboard');
+  }
+
+  function finishSet(playerWhoWon: String) {
+    dispatch(updateSets(playerWhoWon));
+    dispatch(updateMatchSets(currentSetGames, currentMatchSets));
+    checkEndMatch(playerWhoWon, currentSetGames) && finishMatch();
   }
 
   function finishGame(playerWhoWon: String) {
-    currentSetGames = counterLogicScoring(playerWhoWon, currentSetGames);
-
-    const gamesP1 = currentSetGames[currentSetGames.length - 1].p1;
-    const gamesP2 = currentSetGames[currentSetGames.length - 1].p2;
-    currentMatch.result[0].games[currentMatch.flow.sets.length || 0] = gamesP1;
-    currentMatch.result[1].games[currentMatch.flow.sets.length || 0] = gamesP2;
-
-    currentMatch.flow.points.push(points);
-
-    checkEndSet(playerWhoWon, currentSetGames) &&
-      finishSet(playerWhoWon, currentSetGames);
-
+    dispatch(updateGames(playerWhoWon));
+    dispatch(updateMatchGames(currentSetGames, points));
+    checkEndSet(playerWhoWon, currentSetGames) && finishSet(playerWhoWon);
     dispatch(updateMatch(tokens[0], currentMatch));
+    console.log('currentMatch', currentMatch);
   }
 
   function renderPlayerResult(PLAYER: any, OtherPLAYER: any) {
