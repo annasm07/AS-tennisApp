@@ -1,19 +1,42 @@
-import * as React from 'react';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Text, View, StyleSheet} from 'react-native';
 import matchBoxStyles from '../../../theme/matchBoxTheme';
 import globalStyles from '../../../theme/globalThemes';
-import {updateMatch} from '../../../redux/actions/actionCreators';
+import {updateMatch, endGames} from '../../../redux/actions/actionCreators';
+import {counterLogicScoring} from '../../../utils/counterLogic';
+import checkEndSet from '../../../utils/checkEndSet';
 
 export default function LiveResult() {
   const currentMatch = useSelector((store: any) => store.currentMatch);
   let tokens = useSelector((store: any) => store.tokens);
   let {points} = useSelector((store: any) => store.currentGamePoints);
+  let currentSetGames = useSelector((store: any) => store.currentSetGames);
+  let currentMatchSets = useSelector((store: any) => store.currentMatchSets);
+
   const dispatch = useDispatch();
-  function finishGame() {
+
+  function finishSet(playerWhoWon: String, games: any) {
+    dispatch(endGames(playerWhoWon));
+    currentMatch.flow.games.push(games);
+    currentMatch.flow.sets.push(currentMatchSets);
+  }
+
+  function finishGame(playerWhoWon: String) {
+    currentSetGames = counterLogicScoring(playerWhoWon, currentSetGames);
+
+    const gamesP1 = currentSetGames[currentSetGames.length - 1].p1;
+    const gamesP2 = currentSetGames[currentSetGames.length - 1].p2;
+    currentMatch.result[0].games[currentMatch.flow.sets.length || 0] = gamesP1;
+    currentMatch.result[1].games[currentMatch.flow.sets.length || 0] = gamesP2;
+
     currentMatch.flow.points.push(points);
-    currentMatch.flow.games.push({p1: 1, p2: 0});
-    console.log(currentMatch);
+
+    checkEndSet(playerWhoWon, currentSetGames) &&
+      finishSet(playerWhoWon, currentSetGames);
+
+    console.log('currentMatch ---->', currentMatch);
+    console.log('points ---->', points);
     dispatch(updateMatch(tokens[0], currentMatch));
   }
 
@@ -29,7 +52,7 @@ export default function LiveResult() {
               points[points.length - 1][OtherPLAYER],
           ) >= 2
         ) {
-          finishGame();
+          finishGame(PLAYER);
           return <Text style={matchBoxStyles.playerPoint}>Game</Text>;
         } else {
           return <Text style={matchBoxStyles.playerPoint}>Ad</Text>;
@@ -44,7 +67,7 @@ export default function LiveResult() {
           points[points.length - 1][OtherPLAYER] ===
         2
       ) {
-        finishGame();
+        finishGame(PLAYER);
         return <Text style={matchBoxStyles.playerPoint}>Game</Text>;
       } else {
         return <Text style={matchBoxStyles.playerPoint}>-</Text>;

@@ -1,4 +1,4 @@
-export default function counterLogicPoints(
+export function counterLogicPoints(
   playerWhoWon,
   {points, p1CounterPoints, p2CounterPoints},
 ) {
@@ -35,4 +35,21 @@ export default function counterLogicPoints(
     p1CounterPoints,
     p2CounterPoints,
   };
+}
+
+export function counterLogicScoring(playerWhoWon, score) {
+  let playerWhoLost;
+  playerWhoWon === 'p1' ? (playerWhoLost = 'p2') : (playerWhoLost = 'p1');
+
+  const previousGame = score[score.length - 1];
+
+  let newGame = JSON.parse(JSON.stringify(previousGame));
+  newGame = {
+    [playerWhoWon]: (newGame[playerWhoWon] += 1 || 1),
+    [playerWhoLost]: newGame[playerWhoLost],
+  };
+
+  score.push(newGame);
+
+  return score;
 }

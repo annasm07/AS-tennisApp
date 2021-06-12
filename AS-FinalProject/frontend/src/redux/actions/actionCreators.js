@@ -120,6 +120,14 @@ export function updatePoints(pointsInfo) {
     currentGame: pointsInfo,
   };
 }
+
+export function endGames(playerWhoWon) {
+  return {
+    type: actionTypes.END_SET,
+    player: playerWhoWon,
+  };
+}
+
 export function updateMatch(token, currentMatch) {
   return async dispatch => {
     try {
