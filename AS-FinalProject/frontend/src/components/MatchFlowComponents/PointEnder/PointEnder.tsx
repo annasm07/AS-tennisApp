@@ -1,17 +1,14 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import matchButtonsStyles from '../../../theme/matchFlowButtons';
-import {counterLogicPoints} from '../../../utils/counterLogic';
 import {updatePoints} from '../../../redux/actions/actionCreators';
 
 export default function PointEnder({navigation}: any) {
   const dispatch = useDispatch();
-  let currentGamePoints = useSelector((store: any) => store.currentGamePoints);
 
   function handlePoint(playerWhoWon: String) {
-    currentGamePoints = counterLogicPoints(playerWhoWon, currentGamePoints);
-    dispatch(updatePoints(currentGamePoints));
+    dispatch(updatePoints(playerWhoWon));
 
     navigation.navigate('ServeButtons');
   }
