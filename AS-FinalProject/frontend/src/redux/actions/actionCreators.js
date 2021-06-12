@@ -89,12 +89,13 @@ export function getAllPlayers(token) {
   };
 }
 
-export function newMatch(token, p1Name, p2Name) {
+export function newMatch(token, p1Name, p2Name, playerId) {
+  console.log('playerId --->', playerId);
   return async dispatch => {
     try {
       const {data} = await axios.post(
         CREATE_MATCH_URL,
-        {p1Name, p2Name},
+        {p1Name, p2Name, playerId},
         {
           headers: {
             Authorization: `Bearer ${token}`,
