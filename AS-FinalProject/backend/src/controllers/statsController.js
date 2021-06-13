@@ -1,5 +1,6 @@
 const debug = require('debug')('server:statsController');
 const Stats = require('../models/stats.model');
+const Match = require('../models/match.model');
 
 function statsController() {
   async function createStats(req, res) {
@@ -15,10 +16,13 @@ function statsController() {
   }
   async function getMatchStats(req, res) {
     try {
-      const statsById = await Stats.findById(
-        req.params.statsId,
-      );
-      res.json(statsById);
+      const { matchId } = req.params;
+      const statsIdsFound = await Match.findById(matchId);
+      const statsIds = [statsIdsFound.result[0].stats, statsIdsFound.result[1].stats];
+      const statsOfMatch1 = await Stats.findById(statsIds[0]);
+      const statsOfMatch2 = await Stats.findById(statsIds[1]);
+      const allStats = [statsOfMatch1, statsOfMatch2];
+      res.json(allStats);
     } catch (error) {
       debug(error);
       res.status(404);
