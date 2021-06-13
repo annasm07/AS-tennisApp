@@ -22,7 +22,6 @@ export default function LiveResult({navigation}: any) {
   const dispatch = useDispatch();
 
   function finishMatch() {
-    debugger;
     const p1Sets =
       currentMatch.flow?.sets[currentMatch.flow.sets.length - 1]?.p1 || 0;
     const p2Sets =
@@ -41,7 +40,6 @@ export default function LiveResult({navigation}: any) {
     dispatch(updateMatchGames(currentSetGames, points));
     checkEndSet(playerWhoWon, currentSetGames) && finishSet(playerWhoWon);
     dispatch(updateMatch(tokens[0], currentMatch));
-    console.log('currentMatch', currentMatch);
   }
 
   function renderPlayerResult(PLAYER: any, OtherPLAYER: any) {
