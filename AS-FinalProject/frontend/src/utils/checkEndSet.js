@@ -1,4 +1,4 @@
-export default function checkEndSet(playerWhoWon, games) {
+export function checkEndSet(playerWhoWon, games) {
   let set = false;
   const gamesScore = games[games.length - 1];
   let playerWhoLost;
@@ -11,6 +11,15 @@ export default function checkEndSet(playerWhoWon, games) {
   } else if (gamesScore[playerWhoWon] === 7 && gamesScore[playerWhoLost] <= 6) {
     set = true;
   }
+
+  return set;
+}
+
+export function checkEndMatch(playerWhoWon, sets) {
+  let set = false;
+  const setsScore = sets[sets.length - 1];
+
+  setsScore[playerWhoWon] === 2 ? (set = true) : (set = false);
 
   return set;
 }

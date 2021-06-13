@@ -19,14 +19,14 @@ passport.use(
         const user = await UserModel.findOne({ email });
         if (!user) {
           const newPlayer = await PlayerModel.create({
-            name: req.body.playerName.toLowerCase(),
+            name: req.body.playerName,
           });
           const newUser = await UserModel.create({
             email: email.toLowerCase(),
             password: md5(password),
-            name: req.body.name.toLowerCase(),
+            name: req.body.name,
             player: req.body.player,
-            playerName: req.body.playerName.toLowerCase(),
+            playerName: req.body.playerName,
             playerId: newPlayer._id,
           });
 

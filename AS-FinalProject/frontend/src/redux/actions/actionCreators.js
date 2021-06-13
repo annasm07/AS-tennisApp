@@ -114,17 +114,39 @@ export function newMatch(token, p1Name, p2Name, playerId) {
   };
 }
 
-export function updatePoints(pointsInfo) {
+export function updatePoints(playerWhoWon) {
   return {
     type: actionTypes.UPDATE_POINTS,
-    currentGame: pointsInfo,
+    playerWhoWon,
   };
 }
 
-export function endGames(playerWhoWon) {
+export function updateGames(playerWhoWon) {
   return {
-    type: actionTypes.END_SET,
-    player: playerWhoWon,
+    type: actionTypes.UPDATE_GAMES,
+    playerWhoWon,
+  };
+}
+
+export function updateSets(playerWhoWon) {
+  return {
+    type: actionTypes.UPDATE_SETS,
+    playerWhoWon,
+  };
+}
+
+export function updateMatchGames(games, points) {
+  return {
+    type: actionTypes.UPDATE_MATCH_GAMES,
+    games,
+    points,
+  };
+}
+export function updateMatchSets(games, sets) {
+  return {
+    type: actionTypes.UPDATE_MATCH_SETS,
+    games,
+    sets,
   };
 }
 
@@ -141,13 +163,13 @@ export function updateMatch(token, currentMatch) {
         },
       );
       dispatch({
-        type: actionTypes.END_GAME,
+        type: actionTypes.UPDATE_MATCH,
         currentMatch: data,
       });
     } catch (error) {
       console.log(error);
       dispatch({
-        type: actionTypes.END_GAME_ERROR,
+        type: actionTypes.UPDATE_MATCH_ERROR,
       });
     }
   };

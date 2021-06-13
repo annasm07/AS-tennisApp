@@ -1,6 +1,8 @@
+// import React, {useState, useEffect} from 'react';
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
+// import {getAllPlayers} from '../../../redux/actions/actionCreators';
 import {newMatch} from '../../../redux/actions/actionCreators';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
@@ -9,14 +11,20 @@ import globalStyles from '../../../theme/globalThemes';
 
 function NewMatch({navigation}: any) {
   const tokens = useSelector((store: any) => store.tokens);
-
+  const player = useSelector((store: any) => store.player);
+  // const players = useSelector((store: any) => store.players);
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getAllPlayers(tokens[0]));
+  // }, [dispatch, tokens]);
+
+  // console.log('newMatch ---->', players);
 
   const [player1, setPlayer1] = useState('');
   const [player2, setPlayer2] = useState('');
 
   function handleNewMatch() {
-    dispatch(newMatch(tokens[0], player1, player2));
+    dispatch(newMatch(tokens[0], player.name, player2, player._id));
   }
 
   return (
@@ -27,18 +35,21 @@ function NewMatch({navigation}: any) {
       </View>
       <TextInput
         style={styles.input}
-        onChangeText={player => setPlayer1(player)}
+        onChangeText={playerName => setPlayer1(playerName)}
         placeholder="Player 1"
         defaultValue={player1}
         autoCapitalize="words"
       />
       <TextInput
         style={styles.input}
-        onChangeText={player => setPlayer2(player)}
+        onChangeText={playerName => setPlayer2(playerName)}
         placeholder="Player 2"
         defaultValue={player2}
         autoCapitalize="words"
       />
+      {/* <View style={styles.label}>
+        <Text style={globalStyles.grayText}>Select Match Format</Text>
+      </View> */}
       <TouchableOpacity
         style={globalStyles.buttonYellow}
         onPress={() => {
@@ -47,6 +58,8 @@ function NewMatch({navigation}: any) {
         }}>
         <Text>Start Match</Text>
       </TouchableOpacity>
+      {/* {players.length &&
+        players.map((player: any) => <Text>{player.name} </Text>)} */}
     </SafeAreaView>
   );
 }
