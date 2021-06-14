@@ -45,7 +45,7 @@ export function counterLogicScoring(playerWhoWon, score) {
 
   let newGame = JSON.parse(JSON.stringify(previousGame));
   newGame = {
-    [playerWhoWon]: (newGame[playerWhoWon] += 1 || 1),
+    [playerWhoWon]: (newGame[playerWhoWon] += 1),
     [playerWhoLost]: newGame[playerWhoLost],
   };
 
