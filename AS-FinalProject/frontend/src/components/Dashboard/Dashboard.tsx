@@ -1,11 +1,18 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, View, Text, Image, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {getPlayerInfo} from '../../redux/actions/actionCreators';
 import globalStyles from '../../theme/globalThemes';
 import matchBoxStyles from '../../theme/matchBoxTheme';
 
-function Dashboard({dispatch, player, tokens, user}: any) {
+function Dashboard({dispatch, player, tokens, user, navigation}: any) {
   useEffect(() => {
     dispatch(getPlayerInfo(tokens[0], user.user.playerId));
   }, [dispatch, tokens, user]);
@@ -18,39 +25,80 @@ function Dashboard({dispatch, player, tokens, user}: any) {
             uri: `${player.img}`,
           }}
         />
-        <Text style={styles.playerName}>{player.name}</Text>
-        <View>
-          {player.record && (
-            <Text>
-              {' '}
-              {player.record[0]} / {player.record[1]}
-            </Text>
-          )}
+        <View style={styles.infoBox}>
+          <Text style={styles.playerName}>{player.name}</Text>
+
+          <View>
+            {player.record && (
+              <View style={styles.statsFullBar}>
+                <View
+                  style={[
+                    styles.statsWins,
+                    {
+                      width: `${
+                        (player.record[0] /
+                          (player.record[0] + player.record[1])) *
+                        100
+                      }%`,
+                    },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.statsLosses,
+                    {
+                      width: `${
+                        (player.record[1] /
+                          (player.record[0] + player.record[1])) *
+                        100
+                      }%`,
+                    },
+                  ]}
+                />
+              </View>
+            )}
+            <View style={styles.recordInfo}>
+              <Text style={globalStyles.grayText}>Wins / Losses</Text>
+              {player.record && (
+                <Text style={globalStyles.grayText}>
+                  {' '}
+                  {player.record[0]} / {player.record[1]}
+                </Text>
+              )}
+            </View>
+          </View>
         </View>
       </View>
 
       {player.playedMatches &&
         player.playedMatches.map((match: any) => (
-          <View key={match._id}>
-            <View style={matchBoxStyles.matchBox}>
-              <View style={matchBoxStyles.player1}>
-                <Text>{match.result[0].name}</Text>
-                <Text style={matchBoxStyles.result}>
-                  {match.result[0].games}
-                </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Stats', {
+                matchId: match._id,
+              });
+            }}>
+            <View key={match._id}>
+              <View style={matchBoxStyles.matchBox}>
+                <View style={matchBoxStyles.player1}>
+                  <Text>{match.result[0].name}</Text>
+                  <Text style={matchBoxStyles.result}>
+                    {match.result[0].games}
+                  </Text>
+                </View>
+                <View style={matchBoxStyles.player2}>
+                  <Text>{match.result[1].name}</Text>
+                  <Text style={matchBoxStyles.result}>
+                    {match.result[1].games}
+                  </Text>
+                </View>
               </View>
-              <View style={matchBoxStyles.player2}>
-                <Text>{match.result[1].name}</Text>
-                <Text style={matchBoxStyles.result}>
-                  {match.result[1].games}
-                </Text>
+              <View style={matchBoxStyles.dateBox}>
+                <Text style={globalStyles.grayText}>{match.date}</Text>
+                <Text style={globalStyles.grayText}>Stats &gt;</Text>
               </View>
             </View>
-            <View style={matchBoxStyles.dateBox}>
-              <Text style={globalStyles.grayText}>MAY 23rd, 2021</Text>
-              <Text style={globalStyles.grayText}>Stats &gt;</Text>
-            </View>
-          </View>
+          </TouchableOpacity>
         ))}
     </SafeAreaView>
   );
@@ -70,9 +118,40 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   playerName: {
+    marginTop: 10,
     fontSize: 20,
     paddingLeft: 20,
     textTransform: 'capitalize',
+  },
+  infoBox: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  statsFullBar: {
+    marginTop: 15,
+    marginLeft: 20,
+    width: 220,
+    alignSelf: 'center',
+    backgroundColor: 'pink',
+    height: 14,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  statsWins: {
+    width: '50%',
+    backgroundColor: '#96F87E',
+    height: 14,
+  },
+  statsLosses: {
+    width: '50%',
+    backgroundColor: '#F68A5B',
+    height: 14,
+  },
+  recordInfo: {
+    marginLeft: 20,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 
