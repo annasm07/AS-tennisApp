@@ -1,6 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 
-function playerReducer(players = [], action) {
+function playersReducer(players = [], action) {
   switch (action.type) {
     case actionTypes.GET_PLAYERS:
       return action.players;
@@ -11,4 +11,4 @@ function playerReducer(players = [], action) {
   }
 }
 
-export default playerReducer;
+export default playersReducer;
