@@ -1,18 +1,11 @@
 import axios from 'axios';
 import actionTypes from './actionTypes';
-
-const LOG_IN_URL = 'http://localhost:1616/api/auth/login';
-const SIGN_UP_URL = 'http://localhost:1616/api/auth/signup';
-const GET_PLAYER_URL = 'http://localhost:1616/api/home';
-const GET_ALL_PLAYERS = 'http://localhost:1616/api/players';
-const CREATE_MATCH_URL = 'http://localhost:1616/api/match';
-const UPDATE_MATCH_URL = 'http://localhost:1616/api/match';
-const GET_MATCH_STATS = 'http://localhost:1616/api/stats';
+import {env} from '../../../.env.js';
 
 export function logIn(email, password) {
   return async dispatch => {
     try {
-      const {data} = await axios.post(LOG_IN_URL, {email, password});
+      const {data} = await axios.post(env.LOG_IN_URL, {email, password});
       dispatch({
         type: actionTypes.LOG_IN,
         user: data,
@@ -29,7 +22,7 @@ export function logIn(email, password) {
 export function signUp({name, email, password, player, playerName}) {
   return async dispatch => {
     try {
-      await axios.post(SIGN_UP_URL, {
+      await axios.post(env.SIGN_UP_URL, {
         name,
         email,
         password,
@@ -52,7 +45,7 @@ export function signUp({name, email, password, player, playerName}) {
 export function getPlayerInfo(token, playerId) {
   return async dispatch => {
     try {
-      const {data} = await axios(`${GET_PLAYER_URL}/${playerId}`, {
+      const {data} = await axios(`${env.GET_PLAYER_URL}/${playerId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -72,7 +65,7 @@ export function getPlayerInfo(token, playerId) {
 export function getAllPlayers(token) {
   return async dispatch => {
     try {
-      const {data} = await axios(GET_ALL_PLAYERS, {
+      const {data} = await axios(env.GET_ALL_PLAYERS, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -94,7 +87,7 @@ export function newMatch(token, p1Name, p2Name, playerId) {
   return async dispatch => {
     try {
       const {data} = await axios.post(
-        CREATE_MATCH_URL,
+        env.CREATE_MATCH_URL,
         {p1Name, p2Name, playerId},
         {
           headers: {
@@ -155,7 +148,7 @@ export function updateMatch(token, currentMatch) {
   return async dispatch => {
     try {
       const {data} = await axios.put(
-        `${UPDATE_MATCH_URL}/${currentMatch._id}`,
+        `${env.UPDATE_MATCH_URL}/${currentMatch._id}`,
         currentMatch,
         {
           headers: {
@@ -179,7 +172,7 @@ export function updateMatch(token, currentMatch) {
 export function getStatsInfo(token, matchId) {
   return async dispatch => {
     try {
-      const {data} = await axios(`${GET_MATCH_STATS}/${matchId}`, {
+      const {data} = await axios(`${env.GET_MATCH_STATS}/${matchId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
