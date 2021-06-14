@@ -7,6 +7,7 @@ const GET_PLAYER_URL = 'http://localhost:1616/api/home';
 const GET_ALL_PLAYERS = 'http://localhost:1616/api/players';
 const CREATE_MATCH_URL = 'http://localhost:1616/api/match';
 const UPDATE_MATCH_URL = 'http://localhost:1616/api/match';
+const GET_MATCH_STATS = 'http://localhost:1616/api/stats';
 
 export function logIn(email, password) {
   return async dispatch => {
@@ -170,6 +171,27 @@ export function updateMatch(token, currentMatch) {
       console.log(error);
       dispatch({
         type: actionTypes.UPDATE_MATCH_ERROR,
+      });
+    }
+  };
+}
+
+export function getStatsInfo(token, matchId) {
+  return async dispatch => {
+    try {
+      const {data} = await axios(`${GET_MATCH_STATS}/${matchId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({
+        type: actionTypes.UPDATE_STATS,
+        currentStats: data,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.UPDATE_STATS_ERROR,
       });
     }
   };
