@@ -6,7 +6,6 @@ let refreshTokens = [];
 
 function authController() {
   async function signUp(req, res) {
-    passport.authenticate('signup', { session: false });
     res.json({
       message: 'Signup successful',
       user: req.user,

@@ -1,11 +1,14 @@
 const { Router } = require('express');
+const passport = require('passport');
 const authController = require('../controllers/authController')();
 
 const authRoutes = Router();
 
-authRoutes
-  .route('/signup')
-  .post(authController.signUp);
+authRoutes.post(
+  '/signup',
+  passport.authenticate('signup', { session: false }),
+  authController.signUp,
+);
 
 authRoutes
   .route('/login')
