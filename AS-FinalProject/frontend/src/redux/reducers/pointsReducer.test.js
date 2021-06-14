@@ -39,7 +39,7 @@ describe('Given pointsReducer function ', () => {
     ).toEqual(initialState);
   });
 
-  test('when resolved with UPDATE_POINTS_ERROR, then should return players initial state', () => {
+  test('when resolved with UPDATE_POINTS_ERROR, then should return points initial state', () => {
     const initialState = {
       points: [{p1: 0, p2: 0}],
       p1CounterPoints: 0,
@@ -52,7 +52,7 @@ describe('Given pointsReducer function ', () => {
     ).toEqual(initialState);
   });
 
-  test('when resolved with UPDATE_SETS, then should return players initial state', () => {
+  test('when resolved with UPDATE_SETS, then should return points initial state', () => {
     const initialState = {
       points: [{p1: 0, p2: 0}],
       p1CounterPoints: 0,
@@ -64,12 +64,7 @@ describe('Given pointsReducer function ', () => {
       }),
     ).toEqual(initialState);
   });
-  test('when resolved with LOG_IN, then should return players initial state', () => {
-    const initialState = {
-      points: [{p1: 0, p2: 0}],
-      p1CounterPoints: 0,
-      p2CounterPoints: 0,
-    };
+  test('when resolved with LOG_IN, then should return points initial state', () => {
     expect(
       pointsReducer(
         {},
@@ -77,6 +72,6 @@ describe('Given pointsReducer function ', () => {
           type: actionTypes.LOG_IN,
         },
       ),
-    ).toEqual(initialState);
+    ).toEqual({});
   });
 });
