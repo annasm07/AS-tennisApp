@@ -2,7 +2,7 @@ import playersReducer from './playersReducer';
 import actionTypes from '../actions/actionTypes';
 
 describe('Given playersReducer function ', () => {
-  test('when action.type = GET_PLAYERS, then should return player', () => {
+  test('when action.type = GET_PLAYERS, then should return players', () => {
     expect(
       playersReducer(
         {},
@@ -14,7 +14,7 @@ describe('Given playersReducer function ', () => {
     ).toEqual([{name: 'Anna Sala'}]);
   });
 
-  test('when action.type = " ", then should return player', () => {
+  test('when action.type = " ", then should return players', () => {
     expect(
       playersReducer([], {
         type: actionTypes.UPDATE_GAMES,
@@ -22,7 +22,7 @@ describe('Given playersReducer function ', () => {
     ).toEqual([]);
   });
 
-  test('when resolved with GET_PLAYERS_ERROR, then should return player initial state', () => {
+  test('when resolved with GET_PLAYERS_ERROR, then should return players initial state', () => {
     expect(
       playersReducer(undefined, {
         type: actionTypes.GET_PLAYERS_ERROR,
