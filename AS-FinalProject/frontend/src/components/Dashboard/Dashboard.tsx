@@ -80,6 +80,7 @@ function Dashboard({dispatch, player, tokens, user, navigation}: any) {
         {player.playedMatches &&
           player.playedMatches.map((match: any) => (
             <TouchableOpacity
+              key={match._id}
               onPress={() => {
                 navigation.navigate('Stats', {
                   matchId: match._id,
