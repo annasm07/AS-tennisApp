@@ -4,8 +4,6 @@ import ConfigureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import FixedHeader from './FixedHeader';
 
-jest.mock('../../redux/actions/actionCreators');
-
 describe('When invoked a Dashboard component', () => {
   const mockStore = ConfigureStore();
   const store = mockStore({
