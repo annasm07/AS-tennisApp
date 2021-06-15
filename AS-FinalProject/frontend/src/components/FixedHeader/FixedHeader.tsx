@@ -1,10 +1,8 @@
 import * as React from 'react';
-// import {useNavigation} from '@react-navigation/core';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 function FixedHeader() {
-  // const navigation: any = useNavigation();
   return (
     <SafeAreaView style={styles.header}>
       <TouchableOpacity>
