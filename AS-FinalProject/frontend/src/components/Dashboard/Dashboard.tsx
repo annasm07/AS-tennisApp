@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import {
   SafeAreaView,
   View,
@@ -8,12 +9,15 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import {connect} from 'react-redux';
 import {getPlayerInfo} from '../../redux/actions/actionCreators';
 import globalStyles from '../../theme/globalThemes';
 import matchBoxStyles from '../../theme/matchBoxTheme';
 
-function Dashboard({dispatch, player, tokens, user, navigation}: any) {
+function Dashboard({navigation}: any) {
+  const player = useSelector((store: any) => store.player);
+  const tokens = useSelector((store: any) => store.tokens);
+  const user = useSelector((store: any) => store.user);
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPlayerInfo(tokens[0], user.user.playerId));
   }, [dispatch, tokens, user]);
@@ -80,6 +84,7 @@ function Dashboard({dispatch, player, tokens, user, navigation}: any) {
         {player.playedMatches &&
           player.playedMatches.map((match: any) => (
             <TouchableOpacity
+              testID="matchBox"
               key={match._id}
               onPress={() => {
                 navigation.navigate('Stats', {
@@ -166,12 +171,4 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps({player, tokens, user}: any) {
-  return {
-    player,
-    tokens,
-    user,
-  };
-}
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

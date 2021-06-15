@@ -18,12 +18,12 @@ export default function Stats({navigation}: any) {
       <TouchableOpacity
         style={matchBoxStyles.matchBox}
         onPress={() => handleClick(true)}>
-        <Text>{currentMatch?.result[0]?.name}</Text>
+        <Text testID="ClickPlayer1">{currentMatch?.result[0]?.name}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={matchBoxStyles.matchBox}
         onPress={() => handleClick(false)}>
-        <Text>{currentMatch?.result[1]?.name}</Text>
+        <Text testID="ClickPlayer2">{currentMatch?.result[1]?.name}</Text>
       </TouchableOpacity>
     </View>
   ) : (

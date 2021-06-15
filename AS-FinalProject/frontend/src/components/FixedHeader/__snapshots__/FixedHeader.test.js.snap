@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When invoked a Dashboard component Should render dashboard component 1`] = `
+<RNCSafeAreaView
+  style={
+    Object {
+      "borderBottomColor": "gray",
+      "borderBottomWidth": 1,
+      "flexDirection": "row",
+      "marginHorizontal": 10,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/arrow-back.png",
+        }
+      }
+      style={
+        Object {
+          "alignSelf": "flex-start",
+          "height": 30,
+          "marginBottom": -30,
+          "marginLeft": 20,
+          "marginTop": 10,
+          "width": 30,
+        }
+      }
+    />
+  </View>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/ball-logo.png",
+        }
+      }
+      style={
+        Object {
+          "height": 50,
+          "left": "40%",
+          "marginBottom": -30,
+          "marginLeft": 70,
+          "width": 50,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaView>
+`;
