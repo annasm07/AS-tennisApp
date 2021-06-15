@@ -12,7 +12,7 @@ export default function StatsBar({title, p1Value, p2Value}: any) {
     <View style={styles.stats}>
       <View style={styles.statInfo}>
         <Text>{p1Value}</Text>
-        <Text>{title}</Text>
+        <Text style={styles.statTitle}>{title}</Text>
         <Text>{p2Value}</Text>
       </View>
       <View style={styles.statsFullBar}>
