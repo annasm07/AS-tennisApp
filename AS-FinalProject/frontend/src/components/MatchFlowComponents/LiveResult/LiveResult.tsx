@@ -9,6 +9,7 @@ import {
   updateSets,
   updateMatchGames,
   updateMatchSets,
+  updateServer,
 } from '../../../redux/actions/actionCreators';
 import {checkEndSet, checkEndMatch} from '../../../utils/checkEndSet';
 
@@ -18,6 +19,7 @@ export default function LiveResult({navigation}: any) {
   let {points} = useSelector((store: any) => store.currentGamePoints);
   let currentSetGames = useSelector((store: any) => store.currentSetGames);
   let currentMatchSets = useSelector((store: any) => store.currentMatchSets);
+  const server = useSelector((store: any) => store.server);
 
   const dispatch = useDispatch();
 
@@ -44,6 +46,8 @@ export default function LiveResult({navigation}: any) {
     dispatch(updateGames(playerWhoWon));
     dispatch(updateMatchGames(currentSetGames, points));
     checkEndSet(playerWhoWon, currentSetGames) && finishSet(playerWhoWon);
+    dispatch(updateServer(!server));
+
     dispatch(updateMatch(tokens[0], currentMatch));
   }
 
