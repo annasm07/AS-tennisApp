@@ -29,6 +29,11 @@ export default function LiveResult({navigation}: any) {
     (p1Sets === 2 || p2Sets === 2) && navigation.navigate('Dashboard');
   }
 
+  function getDateString(dateString: any) {
+    const dateToDisplay = new Date(dateString).toLocaleDateString();
+    return dateToDisplay;
+  }
+
   function finishSet(playerWhoWon: String) {
     dispatch(updateSets(playerWhoWon));
     dispatch(updateMatchSets(currentSetGames, currentMatchSets));
@@ -109,8 +114,10 @@ export default function LiveResult({navigation}: any) {
         </View>
       </View>
       <View style={matchBoxStyles.dateBox}>
-        <Text style={globalStyles.grayText}>{currentMatch?.date}</Text>
-        <Text style={styles.time}>Time 0:00</Text>
+        <Text style={globalStyles.grayText}>
+          {getDateString(currentMatch?.date)}
+        </Text>
+        <Text style={styles.time}>Best of 3 Sets</Text>
       </View>
     </View>
   ) : (
