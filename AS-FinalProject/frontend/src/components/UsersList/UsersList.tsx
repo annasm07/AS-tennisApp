@@ -39,7 +39,12 @@ function UsersList() {
             </View>
           ))
         ) : (
-          <Text>...loading...</Text>
+          <Image
+            source={{
+              uri: 'https://www.gatoslechuzos.com/static/loading.gif',
+            }}
+            style={styles.loading}
+          />
         )}
       </ScrollView>
     </SafeAreaView>
@@ -73,6 +78,12 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     marginTop: 10,
     textTransform: 'capitalize',
+  },
+  loading: {
+    width: 200,
+    height: 200,
+    top: '45%',
+    left: '40%',
   },
 });
 
