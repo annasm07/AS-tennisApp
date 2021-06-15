@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '90%',
     alignSelf: 'center',
+    marginBottom: 10,
+  },
+  statTitle: {
+    fontSize: 18,
   },
   statsFullBar: {
     width: '90%',
