@@ -1,12 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import matchButtonsStyles from '../../../theme/matchFlowButtons';
+import {updatePoints} from '../../../redux/actions/actionCreators';
 
 export default function Serve({navigation}: any) {
   const server = useSelector((store: any) => store.server);
 
+  const dispatch = useDispatch();
+
   const [currentServer, setCurrentServer] = useState(server);
+
+  function handlePoint(player: Boolean) {
+    let playerWhoWon;
+    player ? (playerWhoWon = 'p1') : (playerWhoWon = 'p2');
+    dispatch(updatePoints(playerWhoWon));
+  }
 
   useEffect(() => {
     setCurrentServer(server);
@@ -33,7 +43,7 @@ export default function Serve({navigation}: any) {
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
-          onPress={() => navigation.navigate('PointEnder')}>
+          onPress={() => handlePoint(server)}>
           <Text style={matchButtonsStyles.textGreen}>Ace</Text>
         </TouchableOpacity>
       </View>
