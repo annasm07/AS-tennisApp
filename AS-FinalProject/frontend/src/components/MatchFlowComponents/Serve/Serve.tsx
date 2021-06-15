@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
@@ -10,17 +10,19 @@ export default function Serve({navigation}: any) {
 
   const dispatch = useDispatch();
 
-  const [currentServer, setCurrentServer] = useState(server);
+  const [secondServe, setsecondServe] = useState(false);
 
   function handlePoint(player: Boolean) {
     let playerWhoWon;
     player ? (playerWhoWon = 'p1') : (playerWhoWon = 'p2');
+    setsecondServe(false);
     dispatch(updatePoints(playerWhoWon));
   }
-
-  useEffect(() => {
-    setCurrentServer(server);
-  }, [server]);
+  function handleServeOut() {
+    !secondServe
+      ? setsecondServe(true)
+      : (handlePoint(!server), setsecondServe(false));
+  }
 
   return (
     <View>
@@ -28,7 +30,7 @@ export default function Serve({navigation}: any) {
         style={[
           styles.column,
           {
-            left: `${currentServer ? '6%' : '58%'}`,
+            left: `${server ? '6%' : '58%'}`,
           },
         ]}>
         <TouchableOpacity
@@ -38,7 +40,7 @@ export default function Serve({navigation}: any) {
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
-          onPress={() => navigation.navigate('PointEnder')}>
+          onPress={() => handleServeOut()}>
           <Text style={matchButtonsStyles.textRed}>Serve Out</Text>
         </TouchableOpacity>
         <TouchableOpacity
