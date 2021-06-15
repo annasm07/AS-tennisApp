@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {getStatsInfo} from '../../redux/actions/actionCreators';
-import styles from './StatsStyles';
+import StatsBar from '../StatsBars/StatsBars';
 
 export default function Stats({route}: any) {
   const {matchId} = route.params;
@@ -14,22 +14,41 @@ export default function Stats({route}: any) {
 
   useEffect(() => {
     dispatch(getStatsInfo(tokens[0], matchId));
-    console.log(matchId);
   }, [dispatch, tokens, matchId]);
+
   return (
     <SafeAreaView>
-      {/* <Text style={styles.statsFullBar}>Hola</Text> */}
-      <View style={styles.statsFullBar}>
-        <View style={styles.statsPlayer1Bar} />
-        <View style={styles.statsPlayer2Bar} />
-      </View>
-      {/* <View style={styles.statsFullBar} /> */}
       {stats.length ? (
-        <Text>{JSON.stringify(stats[0]?.serve)}</Text>
+        <>
+          <StatsBar
+            title={'Aces'}
+            p1Value={stats[0]?.serve.aces}
+            p2Value={stats[1]?.serve.aces}
+          />
+          <StatsBar
+            title={'Double Faults'}
+            p1Value={stats[0]?.serve.doubleFaults}
+            p2Value={stats[1]?.serve.doubleFaults}
+          />
+          <StatsBar
+            title={'Forced Errors'}
+            p1Value={stats[0]?.points.forcedErrors.baseLine[0]}
+            p2Value={stats[1]?.points.forcedErrors.baseLine[0]}
+          />
+          <StatsBar
+            title={'Unforced Errors'}
+            p1Value={stats[0]?.points.unforcedErrors.baseLine[0]}
+            p2Value={stats[1]?.points.unforcedErrors.baseLine[0]}
+          />
+          <StatsBar
+            title={'Winners'}
+            p1Value={stats[0]?.points.winners.baseLine[0]}
+            p2Value={stats[1]?.points.winners.baseLine[0]}
+          />
+        </>
       ) : (
         <Text>...loading...</Text>
       )}
-      {/* {stats.length && console.log(stats[0].serve)} */}
     </SafeAreaView>
   );
 }

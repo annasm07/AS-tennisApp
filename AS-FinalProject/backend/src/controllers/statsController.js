@@ -21,8 +21,8 @@ function statsController() {
       const statsIds = [statsIdsFound.result[0].stats, statsIdsFound.result[1].stats];
       const statsOfMatch1 = await Stats.findById(statsIds[0]);
       const statsOfMatch2 = await Stats.findById(statsIds[1]);
-      const allStats = [statsOfMatch1, statsOfMatch2];
-      res.json(allStats);
+      const response = { stats: [statsOfMatch1, statsOfMatch2], match: statsIdsFound };
+      res.json(response);
     } catch (error) {
       debug(error);
       res.status(404);

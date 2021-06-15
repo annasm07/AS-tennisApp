@@ -1,13 +1,11 @@
 import * as React from 'react';
-import {useNavigation} from '@react-navigation/core';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 function FixedHeader() {
-  const navigation: any = useNavigation();
   return (
     <SafeAreaView style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity>
         <Image
           style={styles.back}
           source={require('../../images/arrow-back.png')}
@@ -41,7 +39,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 50,
     height: 50,
-    marginLeft: 102,
+    marginLeft: 70,
     marginBottom: -30,
     left: '40%',
   },

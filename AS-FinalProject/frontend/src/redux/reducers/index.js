@@ -8,6 +8,7 @@ import currentGamePoints from './pointsReducer';
 import currentSetGames from './gamesReducer';
 import currentMatchSets from './setsReducer';
 import selectedStats from './selectedStats';
+import server from './serverReducer';
 
 const rootReducer = combineReducers({
   user,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   currentSetGames,
   currentMatchSets,
   selectedStats,
+  server,
 });
 
 export default rootReducer;

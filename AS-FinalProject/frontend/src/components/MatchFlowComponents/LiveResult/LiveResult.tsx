@@ -9,6 +9,7 @@ import {
   updateSets,
   updateMatchGames,
   updateMatchSets,
+  updateServer,
 } from '../../../redux/actions/actionCreators';
 import {checkEndSet, checkEndMatch} from '../../../utils/checkEndSet';
 
@@ -18,6 +19,7 @@ export default function LiveResult({navigation}: any) {
   let {points} = useSelector((store: any) => store.currentGamePoints);
   let currentSetGames = useSelector((store: any) => store.currentSetGames);
   let currentMatchSets = useSelector((store: any) => store.currentMatchSets);
+  const server = useSelector((store: any) => store.server);
 
   const dispatch = useDispatch();
 
@@ -27,6 +29,11 @@ export default function LiveResult({navigation}: any) {
     const p2Sets =
       currentMatch.flow?.sets[currentMatch.flow.sets.length - 1]?.p2 || 0;
     (p1Sets === 2 || p2Sets === 2) && navigation.navigate('Dashboard');
+  }
+
+  function getDateString(dateString: any) {
+    const dateToDisplay = new Date(dateString).toLocaleDateString();
+    return dateToDisplay;
   }
 
   function finishSet(playerWhoWon: String) {
@@ -39,6 +46,8 @@ export default function LiveResult({navigation}: any) {
     dispatch(updateGames(playerWhoWon));
     dispatch(updateMatchGames(currentSetGames, points));
     checkEndSet(playerWhoWon, currentSetGames) && finishSet(playerWhoWon);
+    dispatch(updateServer(!server));
+
     dispatch(updateMatch(tokens[0], currentMatch));
   }
 
@@ -109,8 +118,10 @@ export default function LiveResult({navigation}: any) {
         </View>
       </View>
       <View style={matchBoxStyles.dateBox}>
-        <Text style={globalStyles.grayText}>{currentMatch?.date}</Text>
-        <Text style={styles.time}>Time 0:00</Text>
+        <Text style={globalStyles.grayText}>
+          {getDateString(currentMatch?.date)}
+        </Text>
+        <Text style={styles.time}>Best of 3 Sets</Text>
       </View>
     </View>
   ) : (

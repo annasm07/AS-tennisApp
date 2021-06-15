@@ -10,7 +10,7 @@ const matchSchema = mongoose.Schema({
   flow: {
     points: [[{ p1: String, p2: String }]],
     games: [[{ p1: String, p2: String }]],
-    sets: [{ p1: String, p2: String }],
+    sets: [[{ p1: String, p2: String }]],
   },
   winner: [mongoose.Types.ObjectId],
   date: Date,

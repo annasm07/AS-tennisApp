@@ -62,6 +62,7 @@ export function getPlayerInfo(token, playerId) {
     }
   };
 }
+
 export function getAllPlayers(token) {
   return async dispatch => {
     try {
@@ -108,6 +109,13 @@ export function newMatch(token, p1Name, p2Name, playerId) {
   };
 }
 
+export function updateGames(playerWhoWon) {
+  return {
+    type: actionTypes.UPDATE_GAMES,
+    playerWhoWon,
+  };
+}
+
 export function updatePoints(playerWhoWon) {
   return {
     type: actionTypes.UPDATE_POINTS,
@@ -115,10 +123,10 @@ export function updatePoints(playerWhoWon) {
   };
 }
 
-export function updateGames(playerWhoWon) {
+export function updateServer(player) {
   return {
-    type: actionTypes.UPDATE_GAMES,
-    playerWhoWon,
+    type: actionTypes.UPDATE_SERVER,
+    player,
   };
 }
 
@@ -136,6 +144,7 @@ export function updateMatchGames(games, points) {
     points,
   };
 }
+
 export function updateMatchSets(games, sets) {
   return {
     type: actionTypes.UPDATE_MATCH_SETS,
