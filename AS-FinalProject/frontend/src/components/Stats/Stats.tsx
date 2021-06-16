@@ -1,23 +1,32 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Text, View, Image, StyleSheet} from 'react-native';
+import {Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {getStatsInfo} from '../../redux/actions/actionCreators';
+import {
+  getStatsInfo,
+  getPlayerInfo,
+  deleteMatch,
+} from '../../redux/actions/actionCreators';
 import StatsBar from '../StatsBars/StatsBars';
 import matchBoxStyles from '../../theme/matchBoxTheme';
 
-export default function Stats({route}: any) {
+export default function Stats({route, navigation}: any) {
   const {matchId} = route.params;
   const dispatch = useDispatch();
 
-  let tokens = useSelector((store: any) => store.tokens);
+  const tokens = useSelector((store: any) => store.tokens);
+  const user = useSelector((store: any) => store.user);
   let {stats} = useSelector((store: any) => store.selectedStats);
   let {match} = useSelector((store: any) => store.selectedStats);
 
   useEffect(() => {
     dispatch(getStatsInfo(tokens[0], matchId));
   }, [dispatch, tokens, matchId]);
-
+  function handleDelete() {
+    dispatch(deleteMatch(tokens[0], matchId));
+    dispatch(getPlayerInfo(tokens[0], user.user.playerId));
+    navigation.navigate('Dashboard');
+  }
   return (
     <SafeAreaView>
       <Text style={styles.title}>Match Details</Text>
@@ -71,6 +80,11 @@ export default function Stats({route}: any) {
             p1Value={stats[0]?.points.winners.baseLine[0]}
             p2Value={stats[1]?.points.winners.baseLine[0]}
           />
+          <TouchableOpacity
+            style={styles.deleteButton}
+            onPress={() => handleDelete()}>
+            <Text>Delete</Text>
+          </TouchableOpacity>
         </>
       ) : (
         <Image
@@ -105,5 +119,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 10,
     marginBottom: 5,
+  },
+  deleteButton: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#F6655B',
+    borderRadius: 10,
+    fontSize: 50,
+    marginTop: 30,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    width: 120,
   },
 });
