@@ -198,3 +198,23 @@ export function getStatsInfo(token, matchId) {
     }
   };
 }
+
+export function deleteMatch(token, matchId) {
+  return async dispatch => {
+    try {
+      await axios.delete(`${env.UPDATE_MATCH_URL}/${matchId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({
+        type: actionTypes.DELETE_MATCH,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.DELETE_MATCH_ERROR,
+      });
+    }
+  };
+}
