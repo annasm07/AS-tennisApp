@@ -36,17 +36,23 @@ export default function Serve({navigation}: any) {
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => navigation.navigate('PointEnder')}>
-          <Text style={matchButtonsStyles.textGreen}>Serve In</Text>
+          <Text style={matchButtonsStyles.textGreen} testID={'ServeInButton'}>
+            Serve In
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handleServeOut()}>
-          <Text style={matchButtonsStyles.textRed}>Serve Out</Text>
+          <Text style={matchButtonsStyles.textRed} testID={'ServeOutButton'}>
+            Serve Out
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint(server)}>
-          <Text style={matchButtonsStyles.textGreen}>Ace</Text>
+          <Text style={matchButtonsStyles.textGreen} testID={'AceButton'}>
+            Ace
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
