@@ -38,7 +38,7 @@ const LogIn = ({tokens, dispatch, navigation, user}: any) => {
         autoCapitalize="none"
       />
       <TouchableOpacity style={globalStyles.buttonYellow} onPress={handleLogIn}>
-        <Text>Log in</Text>
+        <Text testID="LogInButton">Log in</Text>
       </TouchableOpacity>
       {user.name && <Text style={styles.signedUp}>Signed Up Successfully</Text>}
     </SafeAreaView>
