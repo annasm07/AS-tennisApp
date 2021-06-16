@@ -1,4 +1,4 @@
-import {render, fireEvent} from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 import React from 'react';
 import ConfigureStore from 'redux-mock-store';
 import * as actions from '../../../redux/actions/actionCreators';
