@@ -14,50 +14,50 @@ export default function PointEnder({navigation}: any) {
   }
   return (
     <View style={styles.row}>
-      <View
-        style={[
-          styles.column,
-          {
-            left: '6%',
-          },
-        ]}>
+      <View style={styles.column1}>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p2')}>
-          <Text style={matchButtonsStyles.textRed}>Unforced Error</Text>
+          <Text style={matchButtonsStyles.textRed} testID={'UnforecedError1'}>
+            Unforced Error
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p2')}>
-          <Text style={matchButtonsStyles.textYellow}>Forced Error</Text>
+          <Text style={matchButtonsStyles.textYellow} testID={'ForecedError1'}>
+            Forced Error
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p1')}>
-          <Text style={matchButtonsStyles.textGreen}>Winner</Text>
+          <Text style={matchButtonsStyles.textGreen} testID={'Winner1'}>
+            Winner
+          </Text>
         </TouchableOpacity>
       </View>
-      <View
-        style={[
-          styles.column,
-          {
-            left: '18%',
-          },
-        ]}>
+      <View style={styles.column2}>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p1')}>
-          <Text style={matchButtonsStyles.textRed}>Unforced Error</Text>
+          <Text style={matchButtonsStyles.textRed} testID={'UnforecedError2'}>
+            Unforced Error
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p1')}>
-          <Text style={matchButtonsStyles.textYellow}>Forced Error</Text>
+          <Text style={matchButtonsStyles.textYellow} testID={'ForecedError2'}>
+            Forced Error
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={matchButtonsStyles.button}
           onPress={() => handlePoint('p2')}>
-          <Text style={matchButtonsStyles.textGreen}>Winner</Text>
+          <Text style={matchButtonsStyles.textGreen} testID={'Winner2'}>
+            Winner
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -65,8 +65,13 @@ export default function PointEnder({navigation}: any) {
 }
 
 const styles = StyleSheet.create({
-  column: {
+  column1: {
     marginTop: 10,
+    left: '6%',
+  },
+  column2: {
+    marginTop: 10,
+    left: '18%',
   },
   row: {
     flexDirection: 'row',

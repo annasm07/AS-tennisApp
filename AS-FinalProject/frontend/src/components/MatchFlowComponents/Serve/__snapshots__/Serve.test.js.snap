@@ -1,0 +1,307 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When invoked a Serve component - serving player 1 Should render Serve component 1`] = `
+<View>
+  <View
+    style={
+      Array [
+        Object {
+          "marginTop": 10,
+        },
+        Object {
+          "left": "6%",
+        },
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 15,
+          "display": "flex",
+          "height": 140,
+          "justifyContent": "center",
+          "marginVertical": 5,
+          "opacity": 1,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 3,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 4,
+          "textAlign": "center",
+          "width": 140,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8CE576",
+            "fontSize": 28,
+            "textAlign": "center",
+          }
+        }
+        testID="ServeInButton"
+      >
+        Serve In
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 15,
+          "display": "flex",
+          "height": 140,
+          "justifyContent": "center",
+          "marginVertical": 5,
+          "opacity": 1,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 3,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 4,
+          "textAlign": "center",
+          "width": 140,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#F68A5B",
+            "fontSize": 28,
+            "textAlign": "center",
+          }
+        }
+        testID="ServeOutButton"
+      >
+        Serve Out
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 15,
+          "display": "flex",
+          "height": 140,
+          "justifyContent": "center",
+          "marginVertical": 5,
+          "opacity": 1,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 3,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 4,
+          "textAlign": "center",
+          "width": 140,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8CE576",
+            "fontSize": 28,
+            "textAlign": "center",
+          }
+        }
+        testID="AceButton"
+      >
+        Ace
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`When invoked a Serve component - serving player 2 Should render Serve component 1`] = `
+<View>
+  <View
+    style={
+      Array [
+        Object {
+          "marginTop": 10,
+        },
+        Object {
+          "left": "58%",
+        },
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 15,
+          "display": "flex",
+          "height": 140,
+          "justifyContent": "center",
+          "marginVertical": 5,
+          "opacity": 1,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 3,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 4,
+          "textAlign": "center",
+          "width": 140,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8CE576",
+            "fontSize": 28,
+            "textAlign": "center",
+          }
+        }
+        testID="ServeInButton"
+      >
+        Serve In
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 15,
+          "display": "flex",
+          "height": 140,
+          "justifyContent": "center",
+          "marginVertical": 5,
+          "opacity": 1,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 3,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 4,
+          "textAlign": "center",
+          "width": 140,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#F68A5B",
+            "fontSize": 28,
+            "textAlign": "center",
+          }
+        }
+        testID="ServeOutButton"
+      >
+        Serve Out
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 15,
+          "display": "flex",
+          "height": 140,
+          "justifyContent": "center",
+          "marginVertical": 5,
+          "opacity": 1,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 3,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 4,
+          "textAlign": "center",
+          "width": 140,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8CE576",
+            "fontSize": 28,
+            "textAlign": "center",
+          }
+        }
+        testID="AceButton"
+      >
+        Ace
+      </Text>
+    </View>
+  </View>
+</View>
+`;

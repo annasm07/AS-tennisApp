@@ -10,6 +10,7 @@ import {
   updateMatchSets,
   updateMatch,
   getStatsInfo,
+  updateServer,
 } from './actionCreators';
 import actionTypes from './actionTypes';
 
@@ -108,6 +109,16 @@ describe('Given updateGames function, ', () => {
     expect(updateGames(playerWhoWon)).toEqual({
       type: actionTypes.UPDATE_GAMES,
       playerWhoWon,
+    });
+  });
+});
+
+describe('Given updateServer function, ', () => {
+  test('when resolved, then dispatch an object with type: UPDATE_SERVER', () => {
+    const player = true;
+    expect(updateServer(player)).toEqual({
+      type: actionTypes.UPDATE_SERVER,
+      player,
     });
   });
 });

@@ -47,7 +47,7 @@ function NewMatch({navigation}: any) {
           handleNewMatch();
           navigation.navigate('MatchFlowHome');
         }}>
-        <Text>Start Match</Text>
+        <Text testID="StartMatchButton">Start Match</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

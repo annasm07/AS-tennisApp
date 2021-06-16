@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When invoked a FixedHeaderMatch component Should render FixedHeaderMatch component 1`] = `
+<RNCSafeAreaView
+  style={
+    Object {
+      "borderBottomColor": "gray",
+      "borderBottomWidth": 1,
+      "flexDirection": "row",
+      "marginBottom": -40,
+      "marginHorizontal": 10,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/arrow-back.png",
+        }
+      }
+      style={
+        Object {
+          "alignSelf": "flex-start",
+          "height": 30,
+          "marginBottom": -30,
+          "marginLeft": 20,
+          "marginTop": 10,
+          "width": 30,
+        }
+      }
+    />
+  </View>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/ball-logo.png",
+      }
+    }
+    style={
+      Object {
+        "height": 50,
+        "left": "40%",
+        "marginBottom": -30,
+        "marginLeft": 102,
+        "width": 50,
+      }
+    }
+  />
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/three-dots.png",
+      }
+    }
+    style={
+      Object {
+        "left": "40%",
+        "marginBottom": -30,
+        "marginLeft": 135,
+        "marginTop": 14,
+      }
+    }
+  />
+</RNCSafeAreaView>
+`;

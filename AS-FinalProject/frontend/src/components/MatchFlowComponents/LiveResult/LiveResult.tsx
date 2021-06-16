@@ -20,6 +20,7 @@ export default function LiveResult({navigation}: any) {
   let currentSetGames = useSelector((store: any) => store.currentSetGames);
   let currentMatchSets = useSelector((store: any) => store.currentMatchSets);
   const server = useSelector((store: any) => store.server);
+  let keyCounter = 0;
 
   const dispatch = useDispatch();
 
@@ -101,7 +102,7 @@ export default function LiveResult({navigation}: any) {
           <View style={matchBoxStyles.playerResult}>
             {renderPlayerResult('p1', 'p2')}
             {currentMatch?.result[0]?.games.map((set: any) => (
-              <Text> {set}</Text>
+              <Text key={(keyCounter += 1)}> {set}</Text>
             ))}
           </View>
         </View>
@@ -112,7 +113,7 @@ export default function LiveResult({navigation}: any) {
           <View style={matchBoxStyles.playerResult}>
             {renderPlayerResult('p2', 'p1')}
             {currentMatch?.result[1]?.games.map((set: any) => (
-              <Text> {set}</Text>
+              <Text key={(keyCounter += 1)}> {set}</Text>
             ))}
           </View>
         </View>
