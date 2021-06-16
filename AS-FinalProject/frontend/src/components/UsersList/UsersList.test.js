@@ -29,6 +29,7 @@ describe('When invoked a UsersList component', () => {
   });
   beforeEach(() => {
     jest.spyOn(actions, 'getPlayerInfo').mockReturnValueOnce({type: ''});
+    jest.spyOn(actions, 'getAllPlayers').mockReturnValueOnce({type: ''});
   });
 
   test('Should render UsersList component', () => {
