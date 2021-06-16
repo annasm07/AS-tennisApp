@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When invoked a InfoPage component Should render InfoPage component 1`] = `
+<RNCSafeAreaView>
+  <Text>
+    Info Page LIST PAGE IS WORKING
+  </Text>
+</RNCSafeAreaView>
+`;
