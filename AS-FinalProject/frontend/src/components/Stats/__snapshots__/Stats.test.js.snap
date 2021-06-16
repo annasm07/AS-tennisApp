@@ -654,6 +654,35 @@ exports[`When invoked a Dashboard component Should render Stats component 1`] = 
       </View>
     </View>
   </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "center",
+        "backgroundColor": "#F6655B",
+        "borderRadius": 10,
+        "fontSize": 50,
+        "marginTop": 30,
+        "opacity": 1,
+        "paddingHorizontal": 12,
+        "paddingVertical": 10,
+        "width": 120,
+      }
+    }
+  >
+    <Text>
+      Delete
+    </Text>
+  </View>
 </RNCSafeAreaView>
 `;
 
