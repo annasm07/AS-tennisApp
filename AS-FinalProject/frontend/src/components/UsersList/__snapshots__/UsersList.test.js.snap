@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When invoked a UsersList component players.length === undefined Should render UsersList component 1`] = `
+<RNCSafeAreaView>
+  <RCTScrollView
+    style={
+      Object {
+        "marginBottom": 90,
+        "paddingTop": 30,
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "fontSize": 26,
+            "marginTop": -25,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Find Other Users
+      </Text>
+      <Image
+        source={
+          Object {
+            "uri": "https://www.gatoslechuzos.com/static/loading.gif",
+          }
+        }
+        style={
+          Object {
+            "height": 200,
+            "left": "40%",
+            "top": "45%",
+            "width": 200,
+          }
+        }
+      />
+    </View>
+  </RCTScrollView>
+</RNCSafeAreaView>
+`;
