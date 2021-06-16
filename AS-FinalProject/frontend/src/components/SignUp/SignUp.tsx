@@ -105,12 +105,14 @@ const SignUp = ({navigation, dispatch}: any) => {
           <Pressable
             style={globalStyles.buttonActive}
             onPress={() => setIsPlayer(true)}>
-            <Text>Player</Text>
+            <Text testID={'ChoosePlayerButton1'}>Player</Text>
           </Pressable>
           <Pressable
             style={globalStyles.buttonDisabled}
             onPress={() => setIsPlayer(false)}>
-            <Text style={globalStyles.grayText}>Coach</Text>
+            <Text style={globalStyles.grayText} testID={'ChooseCoachButton1'}>
+              Coach
+            </Text>
           </Pressable>
         </View>
       ) : (
@@ -119,12 +121,16 @@ const SignUp = ({navigation, dispatch}: any) => {
             <Pressable
               style={globalStyles.buttonDisabled}
               onPress={() => setIsPlayer(true)}>
-              <Text style={globalStyles.grayText}>Player</Text>
+              <Text
+                style={globalStyles.grayText}
+                testID={'ChoosePlayerButton2'}>
+                Player
+              </Text>
             </Pressable>
             <Pressable
               style={globalStyles.buttonActive}
               onPress={() => setIsPlayer(false)}>
-              <Text>Coach</Text>
+              <Text testID={'ChooseCoachButton2'}>Coach</Text>
             </Pressable>
           </View>
           <TextInput
@@ -142,14 +148,16 @@ const SignUp = ({navigation, dispatch}: any) => {
           registerButttonDisabled ? styles.disabled : globalStyles.buttonYellow
         }
         onPress={handleSignUp}>
-        <Text style={registerButttonDisabled && globalStyles.grayText}>
+        <Text
+          style={registerButttonDisabled && globalStyles.grayText}
+          testID={'SignUp'}>
           Sign Up
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={globalStyles.buttonGray}
         onPress={() => navigation.navigate('LogInPage')}>
-        <Text>Log in</Text>
+        <Text testID={'LogInButton'}>Log in</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
