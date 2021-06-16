@@ -1,0 +1,853 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When invoked a LiveResult component Should render LiveResult component 1`] = `
+<View
+  style={
+    Object {
+      "height": 130,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "margin": 15,
+        "marginBottom": 5,
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderBottomColor": "#7A7A7A",
+          "borderBottomWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Anna
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Sala
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          Game
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 15,
+        "marginHorizontal": 15,
+        "padding": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#7A7A7A",
+        }
+      }
+    >
+      Invalid Date
+    </Text>
+    <Text
+      style={Object {}}
+    >
+      Best of 3 Sets
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`When invoked a LiveResult component currentMatch.result = undefined Should render LiveResult component 1`] = `
+<Text>
+  ...loading...
+</Text>
+`;
+
+exports[`When invoked a LiveResult component, with other values - ad Should render LiveResult component 1`] = `
+<View
+  style={
+    Object {
+      "height": 130,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "margin": 15,
+        "marginBottom": 5,
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderBottomColor": "#7A7A7A",
+          "borderBottomWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Anna
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          40
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Sala
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          Ad
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 15,
+        "marginHorizontal": 15,
+        "padding": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#7A7A7A",
+        }
+      }
+    >
+      Invalid Date
+    </Text>
+    <Text
+      style={Object {}}
+    >
+      Best of 3 Sets
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`When invoked a LiveResult component, with other values - ad x2 Should render LiveResult component 1`] = `
+<View
+  style={
+    Object {
+      "height": 130,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "margin": 15,
+        "marginBottom": 5,
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderBottomColor": "#7A7A7A",
+          "borderBottomWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Anna
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          40
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Sala
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          Ad
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 15,
+        "marginHorizontal": 15,
+        "padding": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#7A7A7A",
+        }
+      }
+    >
+      Invalid Date
+    </Text>
+    <Text
+      style={Object {}}
+    >
+      Best of 3 Sets
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`When invoked a LiveResult component, with other values - duce x2 Should render LiveResult component 1`] = `
+<View
+  style={
+    Object {
+      "height": 130,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "margin": 15,
+        "marginBottom": 5,
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderBottomColor": "#7A7A7A",
+          "borderBottomWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Anna
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          40
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Sala
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          40
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 15,
+        "marginHorizontal": 15,
+        "padding": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#7A7A7A",
+        }
+      }
+    >
+      Invalid Date
+    </Text>
+    <Text
+      style={Object {}}
+    >
+      Best of 3 Sets
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`When invoked a LiveResult component, with other values - game Should render LiveResult component 1`] = `
+<View
+  style={
+    Object {
+      "height": 130,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "margin": 15,
+        "marginBottom": 5,
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderBottomColor": "#7A7A7A",
+          "borderBottomWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Anna
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          40
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Sala
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          40
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 15,
+        "marginHorizontal": 15,
+        "padding": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#7A7A7A",
+        }
+      }
+    >
+      Invalid Date
+    </Text>
+    <Text
+      style={Object {}}
+    >
+      Best of 3 Sets
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`When invoked a LiveResult component, with other values - game after ad Should render LiveResult component 1`] = `
+<View
+  style={
+    Object {
+      "height": 130,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "margin": 15,
+        "marginBottom": 5,
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderBottomColor": "#7A7A7A",
+          "borderBottomWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Anna
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          40
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text>
+        Sala
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "marginRight": 15,
+            }
+          }
+        >
+          Game
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+        <Text>
+           
+          0
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#E5E5E5",
+        "borderRadius": 10,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 15,
+        "marginHorizontal": 15,
+        "padding": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#7A7A7A",
+        }
+      }
+    >
+      Invalid Date
+    </Text>
+    <Text
+      style={Object {}}
+    >
+      Best of 3 Sets
+    </Text>
+  </View>
+</View>
+`;
