@@ -36,7 +36,6 @@ export default function StatsBar({title, p1Value, p2Value}: any) {
             ]}
           />
         </View>
-        {console.log(p2Value, p1Value)}
       </View>
     </View>
   );
