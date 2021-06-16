@@ -24,7 +24,7 @@ function UsersList() {
         <Text style={styles.title}>Find Other Users</Text>
         {players.length ? (
           newPlayersArray.map((playerToPrint: any) => (
-            <View style={styles.playerBox}>
+            <View style={styles.playerBox} key={playerToPrint._id}>
               <Image
                 style={styles.playerImage}
                 source={{
