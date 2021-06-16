@@ -125,8 +125,11 @@ exports[`When invoked a SignIn component Should render SignUp component 1`] = `
   >
     <View
       accessible={true}
+      collapsable={false}
       focusable={true}
+      onBlur={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -143,7 +146,6 @@ exports[`When invoked a SignIn component Should render SignUp component 1`] = `
           "fontSize": 50,
           "marginHorizontal": 10,
           "marginTop": 30,
-          "opacity": 1,
           "paddingVertical": 10,
           "width": 100,
         }
@@ -157,8 +159,11 @@ exports[`When invoked a SignIn component Should render SignUp component 1`] = `
     </View>
     <View
       accessible={true}
+      collapsable={false}
       focusable={true}
+      onBlur={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -175,7 +180,6 @@ exports[`When invoked a SignIn component Should render SignUp component 1`] = `
           "fontSize": 50,
           "marginHorizontal": 10,
           "marginTop": 30,
-          "opacity": 1,
           "paddingVertical": 10,
           "width": 100,
         }
@@ -226,7 +230,7 @@ exports[`When invoked a SignIn component Should render SignUp component 1`] = `
           "color": "#7A7A7A",
         }
       }
-      testID="SignUpButton"
+      testID="SignUp"
     >
       Sign Up
     </Text>
@@ -259,7 +263,7 @@ exports[`When invoked a SignIn component Should render SignUp component 1`] = `
     }
   >
     <Text
-      testID="NavigateToLogIn"
+      testID="LogInButton"
     >
       Log in
     </Text>
