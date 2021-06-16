@@ -48,7 +48,7 @@ describe('When invoked a Dashboard component', () => {
     expect(dashboard).toMatchSnapshot();
   });
 
-  test('When Match is pressed, it shour navigate to stats', () => {
+  test('When Match is pressed, it should navigate to stats', () => {
     const {getByTestId} = render(
       <Provider store={store}>
         <Dashboard navigation={navigation} />
