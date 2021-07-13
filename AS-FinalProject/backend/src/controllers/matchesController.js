@@ -54,7 +54,7 @@ function matchesController() {
 
   async function updateMatchById(req, res) {
     try {
-      const updatedMatch = await Match.findOneAndUpdate(
+      const updatedMatch = await Match.findByIdAndUpdate(
         req.params.matchId, {
           flow: req.body.flow,
           result: req.body.result,
