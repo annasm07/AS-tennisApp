@@ -22,7 +22,7 @@ function playersController() {
 
   async function updatePlayerById(req, res) {
     try {
-      const updatedPlayer = await Player.findOneAndUpdate(
+      const updatedPlayer = await Player.findByIdAndUpdate(
         req.params.playerId,
         req.body,
         { new: true },
