@@ -38,6 +38,7 @@ function matchesController() {
       res.send(error);
     }
   }
+
   async function getMatchById(req, res) {
     try {
       const { matchId } = req.params;
@@ -66,9 +67,10 @@ function matchesController() {
       res.send(error);
     }
   }
+
   async function deleteMatchById(req, res) {
     try {
-      await Match.findOneAndDelete(req.params.matchId);
+      await Match.findByIdAndDelete(req.params.matchId);
       res.status(204);
       res.json();
     } catch (error) {
