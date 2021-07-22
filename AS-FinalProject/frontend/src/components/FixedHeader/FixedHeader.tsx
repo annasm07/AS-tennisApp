@@ -7,12 +7,6 @@ function FixedHeader() {
     <SafeAreaView style={styles.header}>
       <TouchableOpacity>
         <Image
-          style={styles.back}
-          source={require('../../images/arrow-back.png')}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image
           style={styles.icon}
           source={require('../../images/ball-logo.png')}
         />
