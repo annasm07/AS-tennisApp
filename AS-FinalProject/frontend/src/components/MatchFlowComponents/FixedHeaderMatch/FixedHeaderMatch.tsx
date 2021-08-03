@@ -6,12 +6,31 @@ import {
   Modal,
   Text,
   View,
-  Pressable,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function FixedHeaderMatch() {
   const [modalVisible, setModalVisible] = useState(false);
+
+  function handleOutClick(button: String) {
+    switch (button) {
+      case 'delete':
+        setModalVisible(!modalVisible);
+
+        break;
+      case 'pause':
+        setModalVisible(!modalVisible);
+
+        break;
+      case 'finish':
+        setModalVisible(!modalVisible);
+
+        break;
+
+      default:
+        break;
+    }
+  }
   return (
     <SafeAreaView style={styles.header}>
       <Image
@@ -35,22 +54,33 @@ export default function FixedHeaderMatch() {
         }}>
         <SafeAreaView style={styles.centerPopUp}>
           <View style={styles.popUp}>
-            <Text>Hello World!</Text>
-            <Pressable
+            <TouchableOpacity
               style={styles.buttonPopUp}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text>Delete Match</Text>
-            </Pressable>
-            <Pressable
+              onPress={() => handleOutClick('delete')}>
+              <Image
+                style={styles.popUpIcon}
+                source={require('../../../images/delete-btn.png')}
+              />
+              <Text style={styles.deleteButton}>Delete Match</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               style={styles.buttonPopUp}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text>Pause Match</Text>
-            </Pressable>
-            <Pressable
+              onPress={() => handleOutClick('pause')}>
+              <Image
+                style={styles.popUpIcon}
+                source={require('../../../images/pause-btn.png')}
+              />
+              <Text style={styles.pauseButton}>Pause Match</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               style={styles.buttonPopUp}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text>Finish Match</Text>
-            </Pressable>
+              onPress={() => handleOutClick('finish')}>
+              <Image
+                style={styles.popUpIcon}
+                source={require('../../../images/finish-btn.png')}
+              />
+              <Text style={styles.finishButton}>Finish Match</Text>
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </Modal>
@@ -93,8 +123,8 @@ const styles = StyleSheet.create({
   popUp: {
     margin: 20,
     backgroundColor: '#FBFBFB',
-    borderRadius: 20,
-    padding: 15,
+    borderRadius: 10,
+    padding: 30,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -106,17 +136,36 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonPopUp: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    justifyContent: 'center',
     width: 200,
-    height: 50,
     textAlign: 'center',
     backgroundColor: '#fff',
     borderRadius: 20,
     padding: 10,
+    paddingVertical: 15,
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
     marginVertical: 10,
+  },
+  deleteButton: {
+    color: '#F68A5B',
+    fontSize: 20,
+  },
+  pauseButton: {
+    color: '#F5BF00',
+    fontSize: 20,
+  },
+  finishButton: {
+    color: '#7A7A7A',
+    fontSize: 20,
+  },
+  popUpIcon: {
+    marginRight: 10,
   },
 });
