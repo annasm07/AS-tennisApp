@@ -6,9 +6,12 @@ let refreshTokens = [];
 
 function authController() {
   async function signUp(req, res) {
+    const authInfo = Object.keys(req.authInfo).length > 0 ? req.authInfo : 'Signup successful';
+    console.log(res.req.user);
+    const user = JSON.parse(JSON.stringify(req.body));
     res.json({
-      message: 'Signup successful',
-      user: req.user,
+      message: authInfo,
+      user,
     });
   }
 

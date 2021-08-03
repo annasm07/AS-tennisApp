@@ -3,8 +3,9 @@ const passport = require('passport');
 const JWTstrategy = require('passport-jwt');
 const { Strategy } = require('passport-local');
 const md5 = require('md5');
+const { v4: uuidv4 } = require('uuid');
 const UserModel = require('../models/user.model');
-const PlayerModel = require('../models/player.model');
+const { getAws, putDataAws } = require('../utils/counterLogic');
 
 passport.use(
   'signup',
@@ -15,24 +16,29 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
+      const tableUser = 'user';
+      const tablePlayer = 'player';
       try {
-        const user = await UserModel.findOne({ email });
+        const user = await getAws(tableUser, email);
         if (!user) {
-          const newPlayer = await PlayerModel.create({
+          const idPlayer = uuidv4();
+          const paramsPlayer = {
+            _id: idPlayer,
             name: req.body.playerName,
-          });
-          const newUser = await UserModel.create({
+          };
+          const newPlayer = await putDataAws(tablePlayer, paramsPlayer);
+          const newUser = await putDataAws(tableUser, {
+            _id: uuidv4(),
             email: email.toLowerCase(),
             password: md5(password),
             name: req.body.name,
             player: req.body.player,
             playerName: req.body.playerName,
-            playerId: newPlayer._id,
+            playerId: idPlayer,
           });
-
           return done(null, newUser, newPlayer);
         }
-        return done(null, false, { message: 'Email already taken' });
+        return done(null, user, { message: 'Email already taken' });
       } catch (error) {
         return done(error);
       }
