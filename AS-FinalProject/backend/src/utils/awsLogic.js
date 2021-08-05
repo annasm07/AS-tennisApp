@@ -21,8 +21,10 @@ async function getPlayerQuery(table, name) {
 
   function onScan(err) {
     if (err) {
+      // eslint-disable-next-line no-console
       console.error('Error', JSON.stringify(err, null, 2));
     } else {
+      // eslint-disable-next-line no-console
       console.log('Scan succeeded.');
     }
   }

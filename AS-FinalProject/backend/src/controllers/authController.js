@@ -25,9 +25,7 @@ function authController() {
       async (err, user) => {
         try {
           if (err || !user) {
-            const error = new Error('Wrong email or password');
-
-            return next(error);
+            return res.status(401).send('Wrong email or password');
           }
 
           return req.login(
