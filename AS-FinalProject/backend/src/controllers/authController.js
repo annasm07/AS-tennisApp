@@ -7,7 +7,7 @@ let refreshTokens = [];
 
 function authController() {
   async function signUp(req, res) {
-    const authInfo = Object.keys(req.authInfo).length > 0 ? req.authInfo : 'Signup successful';
+    const authInfo = Object.keys(req.authInfo).length > 0 ? req.authInfo : `${textFile.signUp.signUpOk}`;
     const userEmail = JSON.parse(JSON.stringify(req.body.email.toLowerCase()));
     if (Object.keys(res.req.user).length > 0) {
       res.status(401).send(`${textFile.signUp.emailExists} or ${textFile.signUp.playerExists}`);
@@ -25,7 +25,7 @@ function authController() {
       async (err, user) => {
         try {
           if (err || !user) {
-            return res.status(401).send('Wrong email or password');
+            return res.status(401).send(`${textFile.login.wrongLogin}`);
           }
 
           return req.login(
@@ -38,7 +38,7 @@ function authController() {
               const token = jwt.sign(
                 { user: data },
                 process.env.JWT_SECRET,
-                { expiresIn: '30m' },
+                { expiresIn: process.env.JWT_EXPIRES },
               );
               const refreshToken = jwt.sign(
                 { user: data },
@@ -82,7 +82,7 @@ function authController() {
       const accessToken = jwt.sign(
         { user: data },
         process.env.JWT_SECRET,
-        { expiresIn: '30m' },
+        { expiresIn: process.env.JWT_EXPIRES },
       );
 
       return res.json({
@@ -95,7 +95,7 @@ function authController() {
     const { token } = req.body;
     refreshTokens = refreshTokens.filter((current) => current !== token);
 
-    res.send('Logout successful');
+    res.send(`${textFile.logOut.logOutOk}`);
   }
   return {
     signUp,

@@ -16,7 +16,6 @@ async function getPlayerQuery(table, name) {
       '#name': 'name',
     },
     ExpressionAttributeValues: { ':name': name },
-
   };
 
   function onScan(err) {
@@ -25,9 +24,10 @@ async function getPlayerQuery(table, name) {
       console.error('Error', JSON.stringify(err, null, 2));
     } else {
       // eslint-disable-next-line no-console
-      console.log('Scan succeeded.');
+      console.log('');
     }
   }
+
   const player = await docClient.scan(params, await onScan).promise();
   if (player.Items.length) {
     return player.Items[0];
