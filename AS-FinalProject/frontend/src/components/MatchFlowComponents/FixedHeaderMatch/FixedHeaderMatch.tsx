@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 import {
   StyleSheet,
   Image,
@@ -7,16 +9,22 @@ import {
   Text,
   View,
 } from 'react-native';
+import {deleteMatch} from '../../../redux/actions/actionCreators';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function FixedHeaderMatch() {
   const [modalVisible, setModalVisible] = useState(false);
+  const tokens = useSelector((store: any) => store.tokens);
+  let currentMatch = useSelector((store: any) => store.currentMatch);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   function handleOutClick(button: String) {
+    setModalVisible(!modalVisible);
     switch (button) {
       case 'delete':
-        setModalVisible(!modalVisible);
-
+        navigation.navigate('Dashboard');
+        dispatch(deleteMatch(tokens[0], currentMatch._id));
         break;
       case 'pause':
         setModalVisible(!modalVisible);
@@ -24,7 +32,7 @@ export default function FixedHeaderMatch() {
         break;
       case 'finish':
         setModalVisible(!modalVisible);
-
+        navigation.navigate('Dashboard');
         break;
 
       default:
