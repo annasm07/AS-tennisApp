@@ -7,8 +7,7 @@ let refreshTokens = [];
 function authController() {
   async function signUp(req, res) {
     const authInfo = Object.keys(req.authInfo).length > 0 ? req.authInfo : 'Signup successful';
-    console.log(res.req.user);
-    const user = JSON.parse(JSON.stringify(req.body));
+    const user = authInfo.message === 'Email already taken' || authInfo.message === 'Player exists' ? res.req.user : JSON.parse(JSON.stringify(req.body.email.toLowerCase()));
     res.json({
       message: authInfo,
       user,
@@ -21,7 +20,7 @@ function authController() {
       async (err, user) => {
         try {
           if (err || !user) {
-            const error = new Error('An error occurred.');
+            const error = new Error('Wrong email or password');
 
             return next(error);
           }

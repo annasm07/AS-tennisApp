@@ -4,8 +4,13 @@ const JWTstrategy = require('passport-jwt');
 const { Strategy } = require('passport-local');
 const md5 = require('md5');
 const { v4: uuidv4 } = require('uuid');
-const UserModel = require('../models/user.model');
-const { getAws, putDataAws } = require('../utils/counterLogic');
+const {
+  getAws, putDataAws, getPlayerQuery, isValidPassword,
+} = require('../utils/awsLogic');
+const textFile = require('../utils/textFile.json');
+
+const tableUser = process.env.TABLEUSER;
+const tablePlayer = process.env.TABLEPLAYER;
 
 passport.use(
   'signup',
@@ -16,11 +21,10 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
-      const tableUser = 'user';
-      const tablePlayer = 'player';
       try {
         const user = await getAws(tableUser, email);
-        if (!user) {
+        const playerExists = await getPlayerQuery(tablePlayer, req.body.playerName);
+        if (!user && !playerExists) {
           const idPlayer = uuidv4();
           const paramsPlayer = {
             _id: idPlayer,
@@ -38,7 +42,10 @@ passport.use(
           });
           return done(null, newUser, newPlayer);
         }
-        return done(null, user, { message: 'Email already taken' });
+        if (playerExists) {
+          return done(null, playerExists, { message: `${textFile.signUp.playerExists}` });
+        }
+        return done(null, user, { message: `${textFile.signUp.emailExists}` });
       } catch (error) {
         return done(error);
       }
@@ -55,19 +62,17 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await UserModel.findOne({ email });
-
+        const user = await getAws(tableUser, email);
         if (!user) {
-          return done(null, false, { message: 'User not found' });
+          return done(null, false, { message: `${textFile.login.userNotFound}` });
         }
 
-        const validate = await user.isValidPassword(password);
+        const validate = await isValidPassword(password, user.password);
 
         if (!validate) {
-          return done(null, false, { message: 'Wrong Password' });
+          return done(null, false, { message: `${textFile.login.wrongPassword}` });
         }
-
-        return done(null, user, { message: 'Logged in Successfully' });
+        return done(null, user, { message: `${textFile.signUp.loginOk}` });
       } catch (error) {
         return done(error);
       }

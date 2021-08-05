@@ -1,0 +1,12 @@
+ 
+    {
+    "signUp":{
+        "playerExists": "Player exists",
+        "emailExists": "Email already taken"
+    },
+    "login":{
+        "userNotFound": "User not found",
+        "wrongPassword": "Wrong Password",
+        "loginOk": "Logged in Successfully"
+    }
+  }
