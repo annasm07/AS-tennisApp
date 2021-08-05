@@ -1,17 +1,22 @@
 /* eslint-disable no-underscore-dangle */
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const textFile = require('../utils/textFile.json');
 
 let refreshTokens = [];
 
 function authController() {
   async function signUp(req, res) {
     const authInfo = Object.keys(req.authInfo).length > 0 ? req.authInfo : 'Signup successful';
-    const user = authInfo.message === 'Email already taken' || authInfo.message === 'Player exists' ? res.req.user : JSON.parse(JSON.stringify(req.body.email.toLowerCase()));
-    res.json({
-      message: authInfo,
-      user,
-    });
+    const userEmail = JSON.parse(JSON.stringify(req.body.email.toLowerCase()));
+    if (Object.keys(res.req.user).length > 0) {
+      res.status(401).send(`${textFile.signUp.emailExists} or ${textFile.signUp.playerExists}`);
+    } else {
+      res.json({
+        message: authInfo,
+        userEmail,
+      });
+    }
   }
 
   async function logIn(req, res, next) {

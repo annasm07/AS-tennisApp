@@ -21,7 +21,7 @@ async function getPlayerQuery(table, name) {
 
   function onScan(err) {
     if (err) {
-      console.error('Unable to scan the table. Error JSON:', JSON.stringify(err, null, 2));
+      console.error('Error', JSON.stringify(err, null, 2));
     } else {
       console.log('Scan succeeded.');
     }
