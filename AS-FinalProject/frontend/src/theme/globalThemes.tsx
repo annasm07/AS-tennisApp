@@ -58,6 +58,11 @@ const styles = StyleSheet.create({
   grayText: {
     color: '#7A7A7A',
   },
+  messageError: {
+    color: 'red',
+    fontSize: 12,
+    marginLeft: 50,
+  },
 });
 
 export default styles;

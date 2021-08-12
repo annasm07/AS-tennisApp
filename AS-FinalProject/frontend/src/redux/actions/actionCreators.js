@@ -11,7 +11,6 @@ export function logIn(email, password) {
         user: data,
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: actionTypes.LOG_IN_ERROR,
       });
