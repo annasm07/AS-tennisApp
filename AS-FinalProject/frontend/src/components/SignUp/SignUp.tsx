@@ -61,7 +61,7 @@ const SignUp = ({navigation, dispatch}: any) => {
       />
       {nameError && (
         <View>
-          <Text style={styles.messageError}>
+          <Text style={globalStyles.messageError}>
             Please, add a name of at least two letters
           </Text>
         </View>
@@ -76,7 +76,7 @@ const SignUp = ({navigation, dispatch}: any) => {
       />
       {emailError && (
         <View>
-          <Text style={styles.messageError}>
+          <Text style={globalStyles.messageError}>
             E-mail format accepted is: example@example.com
           </Text>
         </View>
@@ -92,7 +92,7 @@ const SignUp = ({navigation, dispatch}: any) => {
       />
       {pdwError && (
         <View>
-          <Text style={styles.messageError}>
+          <Text style={globalStyles.messageError}>
             Your password has to be at least 5 characters long,
           </Text>
         </View>
@@ -213,11 +213,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 10,
     width: 120,
-  },
-  messageError: {
-    color: 'red',
-    fontSize: 12,
-    marginLeft: 50,
   },
 });
 
