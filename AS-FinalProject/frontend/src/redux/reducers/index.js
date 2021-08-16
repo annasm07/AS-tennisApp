@@ -9,9 +9,11 @@ import currentSetGames from './gamesReducer';
 import currentMatchSets from './setsReducer';
 import selectedStats from './selectedStats';
 import server from './serverReducer';
+import error from './errorReducer';
 
 const rootReducer = combineReducers({
   user,
+  error,
   player,
   players,
   tokens,
