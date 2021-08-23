@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     color: '#7A7A7A',
   },
   messageError: {
+    marginTop: 10,
     color: 'red',
     fontSize: 12,
     marginLeft: 50,

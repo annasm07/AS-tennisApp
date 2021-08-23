@@ -6,10 +6,13 @@ function userReducer(error = false, action) {
     case actionTypes.ERROR:
       currentError = true;
       break;
+    case actionTypes.CLEAR_ERROR:
+      currentError = false;
+      break;
     default:
-      return currentError;
+      currentError = false;
+      break;
   }
-  console.log('updatedUser-----2', currentError);
   return currentError;
 }
 

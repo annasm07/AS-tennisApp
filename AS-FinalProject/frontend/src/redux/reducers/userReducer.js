@@ -5,16 +5,14 @@ function userReducer(user = {}, action) {
   switch (action.type) {
     case actionTypes.LOG_IN:
       updatedUser = action.user;
-      console.log('updatedUser', updatedUser);
       break;
-    case actionTypes.LOG_IN_ERROR:
-      updatedUser.error = true;
+    case actionTypes.SIGN_UP:
+      updatedUser = action.user;
       console.log('updatedUser', updatedUser);
       break;
     default:
       return user;
   }
-  console.log('updatedUser-----2', updatedUser);
   return updatedUser;
 }
 

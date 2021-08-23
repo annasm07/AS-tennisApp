@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 import {Text, View, StyleSheet} from 'react-native';
 import matchBoxStyles from '../../../theme/matchBoxTheme';
 import globalStyles from '../../../theme/globalThemes';
@@ -13,7 +14,7 @@ import {
 } from '../../../redux/actions/actionCreators';
 import {checkEndSet, checkEndMatch} from '../../../utils/checkEndSet';
 
-export default function LiveResult({navigation}: any) {
+export default function LiveResult() {
   const currentMatch = useSelector((store: any) => store.currentMatch);
   let tokens = useSelector((store: any) => store.tokens);
   let {points} = useSelector((store: any) => store.currentGamePoints);
@@ -23,24 +24,18 @@ export default function LiveResult({navigation}: any) {
   let keyCounter = 0;
 
   const dispatch = useDispatch();
-
-  function finishMatch() {
-    const p1Sets =
-      currentMatch.flow?.sets[currentMatch.flow.sets.length - 1]?.p1 || 0;
-    const p2Sets =
-      currentMatch.flow?.sets[currentMatch.flow.sets.length - 1]?.p2 || 0;
-    (p1Sets === 2 || p2Sets === 2) && navigation.navigate('Dashboard');
-  }
+  const navigation = useNavigation();
 
   function getDateString(dateString: any) {
     const dateToDisplay = new Date(dateString).toLocaleDateString();
     return dateToDisplay;
   }
 
-  function finishSet(playerWhoWon: String) {
-    dispatch(updateSets(playerWhoWon));
-    dispatch(updateMatchSets(currentSetGames, currentMatchSets));
-    checkEndMatch(playerWhoWon, currentSetGames) && finishMatch();
+  async function finishSet(playerWhoWon: String) {
+    await dispatch(updateSets(playerWhoWon));
+    await dispatch(updateMatchSets(currentSetGames, currentMatchSets));
+    checkEndMatch(playerWhoWon, currentMatchSets) &&
+      navigation.navigate('Dashboard');
   }
 
   function finishGame(playerWhoWon: String) {
@@ -51,6 +46,10 @@ export default function LiveResult({navigation}: any) {
 
     dispatch(updateMatch(tokens[0], currentMatch));
   }
+
+  // useEffect(() => {
+  //   error && setErrorMessage(true);
+  // }, [error]);
 
   function renderPlayerResult(PLAYER: any, OtherPLAYER: any) {
     if (points[points.length - 1][PLAYER] > 40) {
