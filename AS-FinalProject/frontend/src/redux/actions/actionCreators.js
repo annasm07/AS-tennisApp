@@ -12,7 +12,7 @@ export function logIn(email, password) {
       });
     } catch (error) {
       dispatch({
-        type: actionTypes.LOG_IN_ERROR,
+        type: actionTypes.ERROR,
       });
     }
   };
@@ -21,7 +21,7 @@ export function logIn(email, password) {
 export function signUp({name, email, password, player, playerName}) {
   return async dispatch => {
     try {
-      await axios.post(env.SIGN_UP_URL, {
+      const {data} = await axios.post(env.SIGN_UP_URL, {
         name,
         email,
         password,
@@ -29,13 +29,13 @@ export function signUp({name, email, password, player, playerName}) {
         playerName,
       });
       dispatch({
-        // type: actionTypes.SIGN_UP,
-        // user: data.user,
+        type: actionTypes.SIGN_UP,
+        user: data.user,
       });
     } catch (error) {
       console.log(error);
       dispatch({
-        type: actionTypes.SIGN_UP_ERROR,
+        type: actionTypes.ERROR,
       });
     }
   };
@@ -105,6 +105,14 @@ export function newMatch(token, p1Name, p2Name, playerId) {
         type: actionTypes.CREATE_MATCH_ERROR,
       });
     }
+  };
+}
+
+export function clearError() {
+  console.log('clearError ACTION----');
+
+  return {
+    type: actionTypes.CLEAR_ERROR,
   };
 }
 

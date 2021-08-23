@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 import {
   Pressable,
   SafeAreaView,
@@ -13,11 +15,16 @@ import {
   hasEmailError,
   hasPasswordError,
 } from '../../utils/validation';
-import {connect} from 'react-redux';
 import globalStyles from '../../theme/globalThemes';
-import {signUp} from '../../redux/actions/actionCreators';
+import {signUp, clearError} from '../../redux/actions/actionCreators';
 
-const SignUp = ({navigation, dispatch}: any) => {
+const SignUp = () => {
+  const error = useSelector((store: any) => store.error);
+  const user = useSelector((store: any) => store.user);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const [errorMessage, setErrorMessage] = useState(false);
   const [name, onChangeName] = useState('');
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
@@ -38,8 +45,22 @@ const SignUp = ({navigation, dispatch}: any) => {
       playerName: playerName || name,
     };
     dispatch(signUp(NewUser));
-    navigation.navigate('LogInPage');
   }
+  useEffect(() => {
+    console.log('insiiideee useEffect', user.name);
+    if (user.name) {
+      dispatch(clearError());
+      navigation.navigate('LogInPage');
+      navigation.navigate('SignUpPage');
+      navigation.navigate('LogInPage');
+      console.log('EOEOEOEO', user.name);
+    }
+  }, [user.name, dispatch, navigation]);
+
+  useEffect(() => {
+    error && setErrorMessage(true);
+  }, [error]);
+
   useEffect(() => {
     if (name && email && password && !emailError && !pdwError) {
       setRegisterButttonDisabled(false);
@@ -142,6 +163,13 @@ const SignUp = ({navigation, dispatch}: any) => {
           />
         </>
       )}
+      {errorMessage && (
+        <View>
+          <Text style={globalStyles.messageError}>
+            This email is already taken
+          </Text>
+        </View>
+      )}
       <TouchableOpacity
         disabled={registerButttonDisabled}
         style={
@@ -216,10 +244,4 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps({user}: any) {
-  return {
-    user,
-  };
-}
-
-export default connect(mapStateToProps)(SignUp);
+export default SignUp;

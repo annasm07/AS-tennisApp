@@ -14,7 +14,7 @@ import {
 
 const LogIn = () => {
   const tokens = useSelector((store: any) => store.tokens);
-  const user = useSelector((store: any) => store.user);
+  const error = useSelector((store: any) => store.error);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [registerButttonDisabled, setRegisterButttonDisabled] = useState(true);
@@ -23,13 +23,13 @@ const LogIn = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    tokens.length === 2 && navigation.navigate('FixedNavigator');
+    console.log(tokens);
+    tokens[0] !== undefined && navigation.navigate('FixedNavigator');
   }, [tokens, navigation]);
 
   useEffect(() => {
-    console.log('insideUseEffect');
-    user.error && (setErrorMessage(true), console.log(errorMessage));
-  }, [user, errorMessage]);
+    error && setErrorMessage(true);
+  }, [error]);
 
   function handleLogIn() {
     dispatch(logIn(email, password));
@@ -78,8 +78,15 @@ const LogIn = () => {
           Log in
         </Text>
       </TouchableOpacity>
-
-      {user.name && <Text style={styles.signedUp}>Signed Up Successfully</Text>}
+      <Text style={styles.noAccount}>
+        Don't have an account yet?{' '}
+        <Text
+          style={styles.signUpText}
+          onPress={() => navigation.navigate('SignUpPage')}>
+          Sign up{' '}
+        </Text>
+        here!
+      </Text>
     </SafeAreaView>
   );
 };
@@ -121,6 +128,14 @@ const styles = StyleSheet.create({
     color: '#70BA5D',
     alignSelf: 'center',
     marginTop: 60,
+  },
+  noAccount: {
+    color: '#292929',
+    textAlign: 'center',
+    marginTop: 30,
+  },
+  signUpText: {
+    textDecorationLine: 'underline',
   },
 });
 

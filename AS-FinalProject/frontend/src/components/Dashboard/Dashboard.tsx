@@ -19,7 +19,7 @@ function Dashboard({navigation}: any) {
   const user = useSelector((store: any) => store.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPlayerInfo(tokens[0], user.user.playerId));
+    tokens.length && dispatch(getPlayerInfo(tokens[0], user.user.playerId));
   }, [dispatch, tokens, user]);
 
   function getDateString(dateString: any) {

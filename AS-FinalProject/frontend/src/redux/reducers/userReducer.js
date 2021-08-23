@@ -6,8 +6,8 @@ function userReducer(user = {}, action) {
     case actionTypes.LOG_IN:
       updatedUser = action.user;
       break;
-    case actionTypes.LOG_IN_ERROR:
-      updatedUser.error = true;
+    case actionTypes.SIGN_UP:
+      updatedUser = action.user;
       console.log('updatedUser', updatedUser);
       break;
     default:
