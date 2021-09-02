@@ -1,6 +1,12 @@
 import * as React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import matchBoxStyles from '../../../theme/matchBoxTheme';
 import {updateServer} from '../../../redux/actions/actionCreators';
 
@@ -27,7 +33,7 @@ export default function Stats({navigation}: any) {
       </TouchableOpacity>
     </View>
   ) : (
-    <Text>...loading...</Text>
+    <ActivityIndicator size="large" />
   );
 }
 

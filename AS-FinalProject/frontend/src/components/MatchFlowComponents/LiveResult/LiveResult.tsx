@@ -125,7 +125,7 @@ export default function LiveResult() {
       </View>
     </View>
   ) : (
-    <Text>...loading...</Text>
+    <Text> </Text>
   );
 }
 
