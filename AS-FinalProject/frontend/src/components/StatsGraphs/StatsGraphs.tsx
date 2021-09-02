@@ -1,13 +1,11 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Graph from '../StatsGraphs/StatsGraphs';
 
 export default function Stats() {
   return (
     <SafeAreaView>
-      <Text style={styles.title}>My Stats</Text>
-      <Graph />
+      <Text style={styles.title}>MAP GOES HERE</Text>
     </SafeAreaView>
   );
 }
