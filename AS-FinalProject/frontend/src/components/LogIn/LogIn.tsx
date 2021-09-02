@@ -23,7 +23,6 @@ const LogIn = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    console.log(tokens);
     tokens[0] !== undefined && navigation.navigate('FixedNavigator');
   }, [tokens, navigation]);
 
