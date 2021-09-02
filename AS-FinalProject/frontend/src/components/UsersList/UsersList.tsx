@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {getAllPlayers} from '../../redux/actions/actionCreators';
 import {Text, StyleSheet, View, Image, ScrollView} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
 function UsersList() {
   let tokens = useSelector((store: any) => store.tokens);
@@ -19,7 +18,7 @@ function UsersList() {
   }, [dispatch, tokens]);
 
   return (
-    <SafeAreaView>
+    <View>
       <ScrollView style={styles.scroll}>
         <Text style={styles.title}>Find Other Users</Text>
         {players.length ? (
@@ -47,7 +46,7 @@ function UsersList() {
           />
         )}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     paddingLeft: 20,
-    marginTop: -25,
+    marginTop: -15,
   },
   names: {
     fontSize: 20,
