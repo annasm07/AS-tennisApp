@@ -2,12 +2,11 @@ import * as React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Dashboard from '../Dashboard/Dashboard';
-import Stats from '../Stats/Stats';
+import PlayerStats from '../PlayerStats/PlayerStats';
 import NewMatch from '../MatchFlowComponents/NewMatch/NewMatch';
 import UsersList from '../UsersList/UsersList';
 import InfoPage from '../InfoPage/InfoPage';
 import FixedHeader from '../FixedHeader/FixedHeader';
-
 const Tab = createBottomTabNavigator();
 
 export default function Home() {
@@ -40,8 +39,8 @@ export default function Home() {
           }}
         />
         <Tab.Screen
-          name="Stats"
-          component={Stats}
+          name="PlayerStats"
+          component={PlayerStats}
           options={{
             tabBarIcon: ({focused}) => (
               <View>
