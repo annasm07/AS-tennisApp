@@ -19,7 +19,7 @@ server.use(morgan('dev'));
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
-server.use('/api/auth/', authRoutes);
+server.use('/api/auth', authRoutes);
 
 server.use(
   '/api',
