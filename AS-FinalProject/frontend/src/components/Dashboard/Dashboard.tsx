@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {createStackNavigator} from '@react-navigation/stack';
 import {
   SafeAreaView,
   View,
@@ -12,17 +13,20 @@ import {
 import {getPlayerInfo} from '../../redux/actions/actionCreators';
 import globalStyles from '../../theme/globalThemes';
 import matchBoxStyles from '../../theme/matchBoxTheme';
+import {useNavigation} from '@react-navigation/native';
+import Stats from '../Stats/Stats';
 
-function Dashboard({navigation}: any) {
+function HomeView() {
   const player = useSelector((store: any) => store.player);
   const tokens = useSelector((store: any) => store.tokens);
   const user = useSelector((store: any) => store.user);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   useEffect(() => {
     tokens.length && dispatch(getPlayerInfo(tokens[0], user.user.playerId));
   }, [dispatch, tokens, user]);
 
-  function getDateString(dateString: any) {
+  function getDateString(dateString: string) {
     const dateToDisplay = new Date(dateString).toLocaleDateString();
     return dateToDisplay;
   }
@@ -117,6 +121,25 @@ function Dashboard({navigation}: any) {
           ))}
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+const Stack = createStackNavigator();
+
+function Dashboard() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Dashboard"
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen
+        name="Dashboard"
+        component={HomeView}
+        options={{title: ' '}}
+      />
+      <Stack.Screen name="Stats" component={Stats} />
+    </Stack.Navigator>
   );
 }
 
