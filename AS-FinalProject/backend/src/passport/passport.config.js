@@ -5,8 +5,8 @@ const { Strategy } = require('passport-local');
 const md5 = require('md5');
 const { v4: uuidv4 } = require('uuid');
 const {
-  getAws, putDataAws, getPlayerQuery, isValidPassword,
-} = require('../utils/awsLogic');
+  getDynamoDB, putDataDynamoDB, getQuery, isValidPassword,
+} = require('../utils/logicDynamoDB');
 const textFile = require('../utils/textFile.json');
 
 const tableUser = process.env.TABLEUSER;
@@ -22,16 +22,19 @@ passport.use(
     },
     async (req, email, password, done) => {
       try {
-        const user = await getAws(tableUser, email);
-        const playerExists = await getPlayerQuery(tablePlayer, req.body.playerName);
+        const user = await getDynamoDB(tableUser, email);
+        const playerExists = await getQuery(tablePlayer, 'name', req.body.playerName);
         if (!user && !playerExists) {
           const idPlayer = uuidv4();
           const paramsPlayer = {
             _id: idPlayer,
             name: req.body.playerName,
+            record: [0, 0],
+            playedMatches: [],
+            img: '',
           };
-          const newPlayer = await putDataAws(tablePlayer, paramsPlayer);
-          const newUser = await putDataAws(tableUser, {
+          const newPlayer = await putDataDynamoDB(tablePlayer, paramsPlayer);
+          const newUser = await putDataDynamoDB(tableUser, {
             _id: uuidv4(),
             email: email.toLowerCase(),
             password: md5(password),
@@ -62,7 +65,7 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await getAws(tableUser, email);
+        const user = await getDynamoDB(tableUser, email);
         if (!user) {
           return done(null, false, { message: `${textFile.login.userNotFound}` });
         }

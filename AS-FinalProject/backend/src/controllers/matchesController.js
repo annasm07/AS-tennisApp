@@ -1,40 +1,45 @@
 /* eslint-disable no-underscore-dangle */
 const debug = require('debug')('server:matchesController');
-const Match = require('../models/match.model');
-const Player = require('../models/player.model');
+const { v4: uuidv4 } = require('uuid');
+const {
+  getQuery, updateDynamoDB, updateArray, deleteDynamoDB,
+} = require('../utils/logicDynamoDB');
+const {
+  createNewMatch,
+} = require('../utils/createMatch');
 
 function matchesController() {
   async function createMatch(req, res) {
-    const newMatch = new Match(
-      {
-        result:
-            [{
-              player: [req.body.playerId],
-              name: req.body.p1Name,
-              games: [0, 0, 0],
-            },
-            {
-              name: req.body.p2Name,
-              games: [0, 0, 0],
-            }],
-        date: Date.now(),
-      },
-    );
-    const playerById = await Player.findById(
-      req.body.playerId,
-    );
-    playerById.playedMatches.push(newMatch._id);
+    const tablePlayer = process.env.TABLEPLAYER;
+    const tableMatch = process.env.TABLEMATCH;
+    const tablePlayedMatches = process.env.TABLEPLAYEDMATCHES;
 
-    await Player.findOneAndUpdate(
-      newMatch.result[0].player, {
-        playedMatches: playerById.playedMatches,
-      },
-    );
+    const newMatch = await createNewMatch(req.body);
+
     try {
-      await newMatch.save();
-      res.json(newMatch);
+      const playerById = await getQuery(tablePlayer, '_id', req.body.playerId);
+
+      // if (typeof playerById[0].playedMatches === 'object') {
+      //   playerById[0].playedMatches.shift();
+      // }
+
+      const createID = uuidv4();
+
+      const update = await updateDynamoDB(tableMatch, tablePlayedMatches,
+        newMatch, [], createID);
+      const updatePlayer = await updateDynamoDB(tablePlayer, tablePlayedMatches,
+        createID, playerById);
+      playerById[0].playedMatches.push(createID);
+      const updatePlayedMatches = await updateArray(tablePlayer, playerById);
+
+      res.send({
+        new_match: update,
+        player_with_matches: updatePlayer,
+        update_played_matches: updatePlayedMatches,
+      });
     } catch (error) {
       debug(error);
+      res.status(404);
       res.send(error);
     }
   }
@@ -42,9 +47,7 @@ function matchesController() {
   async function getMatchById(req, res) {
     try {
       const { matchId } = req.params;
-      const matchById = await Match.findById(
-        matchId,
-      );
+      const matchById = await getQuery('match', '_id', matchId);
       res.json(matchById);
     } catch (error) {
       debug(error);
@@ -55,24 +58,39 @@ function matchesController() {
 
   async function updateMatchById(req, res) {
     try {
-      const updatedMatch = await Match.findByIdAndUpdate(
-        req.params.matchId, {
+      const updatedMatch = await updateDynamoDB('match', 'playedMatches',
+        {
           flow: req.body.flow,
           result: req.body.result,
-        },
-      );
+        }, req.params.matchId);
       res.json(updatedMatch);
     } catch (error) {
-      debug(error);
       res.send(error);
+      debug(error);
     }
+  }
+
+  async function deleteMatchFromPlayerById(playerId, matchId) {
+    const tablePlayer = process.env.TABLEPLAYER;
+    const playerById = await getQuery(tablePlayer, '_id', playerId);
+    const matchesArray = playerById[0].playedMatches
+      .filter((playerMatchId) => playerMatchId !== matchId);
+
+    return matchesArray;
   }
 
   async function deleteMatchById(req, res) {
     try {
-      await Match.findByIdAndDelete(req.params.matchId);
+      const tablePlayer = process.env.TABLEPLAYER;
+      const { matchId } = req.params;
+      const deleted = await deleteDynamoDB('match', matchId);
+      const playerId = deleted.Attributes.playedMatches[0].player[0];
+      const deletedMatchFromPlayer = await deleteMatchFromPlayerById(playerId, matchId);
+      const playerWhitoutMatchInArrayMatches = await
+      updateArray(tablePlayer, playerId, deletedMatchFromPlayer);
+
+      res.json(deleted.Attributes, playerWhitoutMatchInArrayMatches);
       res.status(204);
-      res.json();
     } catch (error) {
       debug(error);
       res.send(error);
